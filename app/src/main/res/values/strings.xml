@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Resturant System</string>
+    <!-- Main page where the user can make a new order for a customer -->
+    <string name="create_a_new_order">Create a new order</string>
+</resources>
