@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_food_category"
+        style="@style/AddStuffTopOfPage"/>
+
+    <GridView
     android:id="@+id/create_order_activity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:columnWidth="120dp"
+    android:layout_height="wrap_content"
+    android:columnWidth="60dp"
     android:numColumns="2"
-    android:verticalSpacing="12dp"
-    android:horizontalSpacing="10dp"
     android:stretchMode="columnWidth"
-    android:gravity="center"
-    />
+    android:gravity="center"/>
+
+</LinearLayout>

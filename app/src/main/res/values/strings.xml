@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Resturant System</string>
+    <string name="app_name">Restaurant System</string>
     <!-- Main page where the user can make a new order for a customer -->
     <string name="create_a_new_order">Create a new order</string>
+    <!-- Adding a new food category. Example dessert, mains, starters and so on -->
+    <string name="add_new_food_category">Add new category</string>
 </resources>
