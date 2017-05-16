@@ -12,4 +12,18 @@
         <item name="android:textSize">24sp</item>
     </style>
 
+    <!-- Will be used for where the user can add stuff, example "Add new food category"
+    or "Add new starter" -->
+    <style name="AddStuffTopOfPage">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:clickable">true</item>
+        <item name="android:animateOnClick">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:padding">24dp</item>
+    </style>
+
 </resources>

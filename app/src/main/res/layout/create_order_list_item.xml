@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         tools:text="Drinks"
         android:textSize="24sp"
-        android:padding="25dp"
+        android:padding="32dp"
         android:textAlignment="center"/>
 
 </LinearLayout>
