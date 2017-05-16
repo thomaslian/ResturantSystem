@@ -14,7 +14,7 @@ public class CreateFood extends AppCompatActivity {
         setContentView(R.layout.activity_create_food);
 
         ArrayList<FoodName> foodNames = new ArrayList<>();
-        foodNames.add(new FoodName("Drink", "Cola", 1));
+        foodNames.add(new FoodName("Drinks", "Cola", 1));
         foodNames.add(new FoodName("Starter", "Chips", 2));
 
         //Create an WordAdapter, whose data source is a list of Word.
