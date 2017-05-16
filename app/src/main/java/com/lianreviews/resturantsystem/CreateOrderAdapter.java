@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by Thoma on 08.05.2017.
  */
 
-public class CreateOrderAdapter extends ArrayAdapter<MenuItem> {
+public class CreateOrderAdapter extends ArrayAdapter<FoodCategory> {
     /**
      * This is our own custom constructor (it does not mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want to
@@ -23,7 +23,7 @@ public class CreateOrderAdapter extends ArrayAdapter<MenuItem> {
      * @param context   The current context. Used to inflate the layout file.
      * @param arrayList A list of Word objects to display in a list.
      */
-    public CreateOrderAdapter(Activity context, ArrayList<MenuItem> arrayList) {
+    public CreateOrderAdapter(Activity context, ArrayList<FoodCategory> arrayList) {
         //Here, we initialize the ArrayAdapter's internal storage for teh context and the list.
         //The second argument is used when the ArrayAdapter is populating a single TextView.
         //Because this is a custom adapter for two TextViews, the adapter is not going to use this
@@ -49,11 +49,11 @@ public class CreateOrderAdapter extends ArrayAdapter<MenuItem> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.create_order_list_item, parent, false);
         }
-        // Get the MenuItem object located at this position in the list
-        MenuItem currentMenuItem = getItem(position);
+        // Get the FoodCategory object located at this position in the list
+        FoodCategory currentFoodCategory = getItem(position);
 
         TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.category_name);
-        categoryNameTextView.setText(currentMenuItem.getCategoryName());
+        categoryNameTextView.setText(currentFoodCategory.getCategoryName());
 
         return listItemView;
     }

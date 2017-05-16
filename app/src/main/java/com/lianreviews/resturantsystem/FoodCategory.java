@@ -4,11 +4,11 @@ package com.lianreviews.resturantsystem;
  * Created by Thoma on 08.05.2017.
  */
 
-public class MenuItem {
+public class FoodCategory {
 
     private String mCategoryName;
 
-    public MenuItem(String categoryName){
+    public FoodCategory(String categoryName){
         mCategoryName = categoryName;
     }
 
