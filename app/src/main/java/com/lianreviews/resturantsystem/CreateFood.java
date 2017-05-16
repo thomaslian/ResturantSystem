@@ -19,7 +19,7 @@ public class CreateFood extends AppCompatActivity {
 
         //Create an WordAdapter, whose data source is a list of Word.
         //The adapter knows how to create list items for each item in the list.
-        FoodCategoryAdapter foodCategoryAdapter = new FoodCategoryAdapter(this, foodCategories);
+        FoodNameAdapter foodCategoryAdapter = new FoodCategoryAdapter(this, foodCategories);
 
         //Get the listView and set the adapter for the listView
         GridView gridView = (GridView) findViewById(R.id.create_order_activity);
