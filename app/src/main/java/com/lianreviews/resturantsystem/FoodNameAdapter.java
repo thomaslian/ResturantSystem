@@ -1,11 +1,14 @@
 package com.lianreviews.resturantsystem;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -52,8 +55,14 @@ public class FoodNameAdapter extends ArrayAdapter<FoodName> {
         // Get the FoodCategory object located at this position in the list
         FoodName currentFoodName = getItem(position);
 
-        //TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.category_name);
-        //categoryNameTextView.setText(currentFoodName.getCategoryName());
+
+        Intent intent = ((Activity) getContext()).getIntent();
+        String category = intent.getStringExtra(FoodCategoryAdapter.CATEGORY_NAME);
+
+        Log.d("Category name: ", category);
+
+        TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.category_name);
+        categoryNameTextView.setText(currentFoodName.getName());
 
         return listItemView;
     }

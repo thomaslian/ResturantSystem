@@ -15,7 +15,8 @@ public class CreateFood extends AppCompatActivity {
 
         ArrayList<FoodName> foodNames = new ArrayList<>();
         foodNames.add(new FoodName("Drinks", "Cola", 1));
-        foodNames.add(new FoodName("Starter", "Chips", 2));
+        foodNames.add(new FoodName("Dessert", "Banana milkshake", 2));
+        foodNames.add(new FoodName("Food", "Hamburger", 3));
 
         //Create an WordAdapter, whose data source is a list of Word.
         //The adapter knows how to create list items for each item in the list.

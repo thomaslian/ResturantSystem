@@ -18,21 +18,6 @@ public class CreateOrder extends AppCompatActivity {
         foodCategories.add(new FoodCategory("Drinks"));
         foodCategories.add(new FoodCategory("Food"));
         foodCategories.add(new FoodCategory("Dessert"));
-        foodCategories.add(new FoodCategory("Drinks"));
-        foodCategories.add(new FoodCategory("Food"));
-        foodCategories.add(new FoodCategory("Dessert"));
-        foodCategories.add(new FoodCategory("Drinks"));
-        foodCategories.add(new FoodCategory("Food"));
-        foodCategories.add(new FoodCategory("Dessert"));
-        foodCategories.add(new FoodCategory("Drinks"));
-        foodCategories.add(new FoodCategory("Food"));
-        foodCategories.add(new FoodCategory("Dessert"));
-        foodCategories.add(new FoodCategory("Drinks"));
-        foodCategories.add(new FoodCategory("Food"));
-        foodCategories.add(new FoodCategory("Dessert"));
-        foodCategories.add(new FoodCategory("Drinks"));
-        foodCategories.add(new FoodCategory("Food"));
-        foodCategories.add(new FoodCategory("Dessert"));
 
         //Create an WordAdapter, whose data source is a list of Word.
         //The adapter knows how to create list items for each item in the list.

@@ -1,7 +1,9 @@
 package com.lianreviews.resturantsystem;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,9 @@ import java.util.ArrayList;
 
 
 public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
+
+    public final static String CATEGORY_NAME = "something";
+
     /**
      * This is our own custom constructor (it does not mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want to
@@ -48,11 +53,26 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
                     R.layout.create_order_list_item, parent, false);
         }
         // Get the FoodCategory object located at this position in the list
-        FoodCategory currentFoodCategory = getItem(position);
+        final FoodCategory currentFoodCategory = getItem(position);
 
         TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.category_name);
         categoryNameTextView.setText(currentFoodCategory.getCategoryName());
+        categoryNameTextView.setOnClickListener(onClickListener);
 
         return listItemView;
+        }
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent createFoodIntent = new Intent(v.getContext(), CreateFood.class);
+                TextView b = (TextView)v;
+                String buttonText = b.getText().toString();
+                Log.d("Button clicked: ", buttonText);
+                createFoodIntent.putExtra(CATEGORY_NAME, buttonText);
+                v.getContext().startActivity(createFoodIntent);
+            }
+        };
+
+
     }
-}

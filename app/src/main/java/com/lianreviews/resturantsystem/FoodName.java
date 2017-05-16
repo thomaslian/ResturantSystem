@@ -15,4 +15,12 @@ public class FoodName {
         mName = name;
         mNumber = number;
     }
+
+    public String getName(){
+        return mName;
+    }
+
+    public String getCategory(){
+        return mCategory;
+    }
 }
