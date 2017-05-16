@@ -6,18 +6,16 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
-public class CreateOrder extends AppCompatActivity {
+public class CreateFood extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_order);
+        setContentView(R.layout.activity_create_food);
 
-        //Create an ArrayList of Word objects
-        ArrayList<FoodCategory> foodCategories = new ArrayList<>();
-        foodCategories.add(new FoodCategory("Drinks"));
-        foodCategories.add(new FoodCategory("Food"));
-        foodCategories.add(new FoodCategory("Dessert"));
+        ArrayList<FoodName> foodNames = new ArrayList<>();
+        foodNames.add(new FoodName("Drink", "Cola", 1));
+        foodNames.add(new FoodName("Starter", "Chips", 2));
 
         //Create an WordAdapter, whose data source is a list of Word.
         //The adapter knows how to create list items for each item in the list.

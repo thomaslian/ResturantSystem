@@ -6,5 +6,13 @@ package com.lianreviews.resturantsystem;
 
 public class FoodName {
 
-    private String category;
+    private String mCategory;
+    private String mName;
+    private int mNumber;
+
+    public FoodName (String category, String name, int number){
+        mCategory = category;
+        mName = name;
+        mNumber = number;
+    }
 }
