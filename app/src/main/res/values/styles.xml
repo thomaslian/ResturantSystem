@@ -9,7 +9,7 @@
     </style>
 
     <style name="MainPage">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <!-- Will be used for where the user can add stuff, example "Add new food category"
