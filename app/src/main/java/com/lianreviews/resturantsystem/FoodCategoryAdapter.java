@@ -65,8 +65,11 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Create an Intent that opens the CreateFood class and pass the category clicked
                 Intent createFoodIntent = new Intent(v.getContext(), CreateFood.class);
+                //Get the button that is clicked
                 TextView b = (TextView)v;
+                //Get the name of the button
                 String buttonText = b.getText().toString();
                 Log.d("Button clicked: ", buttonText);
                 createFoodIntent.putExtra(CATEGORY_NAME, buttonText);
