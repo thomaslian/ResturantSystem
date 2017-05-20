@@ -5,19 +5,35 @@
     android:layout_width="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_new_food_category"
-        style="@style/AddStuffTopOfPage"/>
+        android:layout_height="wrap_content">
 
-    <GridView
-        android:id="@+id/create_order_activity"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_new_food_category"
+            style="@style/AddStuffTopOfPage"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/view_order_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/view_order"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            style="@style/AddStuffTopOfPage"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/create_food_activity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnWidth="60dp"
-        android:numColumns="2"
-        android:stretchMode="columnWidth"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

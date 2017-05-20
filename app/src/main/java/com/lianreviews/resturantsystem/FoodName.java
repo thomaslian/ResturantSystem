@@ -1,19 +1,14 @@
 package com.lianreviews.resturantsystem;
 
-/**
- * Created by Thoma on 16.05.2017.
- */
 
 public class FoodName {
 
     private String mCategory;
     private String mName;
-    private int mNumber;
 
-    public FoodName (String category, String name, int number){
+    public FoodName (String category, String name){
         mCategory = category;
         mName = name;
-        mNumber = number;
     }
 
     public String getName(){
@@ -23,4 +18,5 @@ public class FoodName {
     public String getCategory(){
         return mCategory;
     }
+
 }
