@@ -5,4 +5,5 @@
     <!-- Adding a new food category. Example dessert, mains, starters and so on -->
     <string name="add_new_food_category">Add new category</string>
     <string name="view_order">View order</string>
+    <string name="view_final_order">View order</string>
 </resources>

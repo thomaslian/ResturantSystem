@@ -1,7 +1,10 @@
 package com.lianreviews.resturantsystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.GridView;
 
 import java.util.ArrayList;
@@ -26,5 +29,30 @@ public class CreateOrder extends AppCompatActivity {
         //Get the listView and set the adapter for the listView
         GridView gridView = (GridView) findViewById(R.id.create_order_activity);
         gridView.setAdapter(foodCategoryAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.tool_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_view_cart:
+                // User chose the "View cart", show what is ordered so far
+                Intent intent = new Intent(this, ViewOrder.class);
+                this.startActivity(intent);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

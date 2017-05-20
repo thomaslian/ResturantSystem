@@ -3,6 +3,8 @@ package com.lianreviews.resturantsystem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class CreateFood extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_food);
+
 
         // Create an intent and get the clicked food category
         Intent intent = getIntent();
@@ -50,5 +53,30 @@ public class CreateFood extends AppCompatActivity {
         ListView gridView = (ListView) findViewById(R.id.create_food_activity);
         //GridView gridView = (GridView) findViewById(R.id.create_food_activity);
         gridView.setAdapter(foodNameAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.tool_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_view_cart:
+                // User chose the "View cart", show what is ordered so far
+                Intent intent = new Intent(this, ViewOrder.class);
+                this.startActivity(intent);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }
