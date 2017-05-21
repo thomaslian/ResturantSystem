@@ -49,7 +49,7 @@ public class FoodNameAdapter extends ArrayAdapter<FoodName> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.create_food_list_item, parent, false);
         }
-        // Get the FoodCategory object located at this position in the list
+        // Get the FoodName object located at this position in the list
         final FoodName currentFoodName = getItem(position);
 
         TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.food_name);
@@ -58,7 +58,7 @@ public class FoodNameAdapter extends ArrayAdapter<FoodName> {
         categoryNameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Create an Intent that opens the CreateFood class and pass the category clicked
+                //Create an Intent that opens the FoodPage class
                 Intent createFoodIntent = new Intent(v.getContext(), FoodPage.class);
                 // Create a bundle to store multiple strings
                 Bundle extras = new Bundle();

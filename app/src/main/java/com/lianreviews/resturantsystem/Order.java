@@ -10,7 +10,7 @@ public class Order {
     private Boolean mOrdered = false;
     private int mNumberOfProducts;
 
-    public Order (String productName, Boolean ordered, int numberOfProducts){
+    public Order(String productName, Boolean ordered, int numberOfProducts) {
         mProductname = productName;
         mOrdered = ordered;
         mNumberOfProducts = numberOfProducts;

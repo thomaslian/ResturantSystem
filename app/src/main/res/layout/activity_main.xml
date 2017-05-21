@@ -9,10 +9,10 @@
 
     <TextView
         android:id="@+id/create_new_order"
+        style="@style/MainPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_a_new_order"
-        style="@style/MainPage"/>
+        android:text="@string/create_a_new_order" />
 
 
 </LinearLayout>

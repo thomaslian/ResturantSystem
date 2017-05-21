@@ -17,23 +17,23 @@ public class CreateFood extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_food);
 
-
         // Create an intent and get the clicked food category
         Intent intent = getIntent();
         String clickedCategory = intent.getStringExtra(FoodCategoryAdapter.CATEGORY_NAME);
 
+        // Create a list of all categories
         List<String> foodCategory = new ArrayList<>();
         foodCategory.add("Drinks");
         foodCategory.add("Drinks");
         foodCategory.add("Dessert");
         foodCategory.add("Food");
 
+        // Create a list of all the food
         List<String> food = new ArrayList<>();
         food.add("Cola");
         food.add("Fanta");
         food.add("Banana milkshake");
         food.add("Hamburger");
-
 
         ArrayList<FoodName> foodNames = new ArrayList<>();
 
@@ -45,15 +45,13 @@ public class CreateFood extends AppCompatActivity {
             }
         }
 
-
-        //Create an WordAdapter, whose data source is a list of Word.
+        //Create an FoodNameAdapter, whose data source is a list of FoodName.
         //The adapter knows how to create list items for each item in the list.
         FoodNameAdapter foodNameAdapter = new FoodNameAdapter(this, foodNames);
 
-        //Get the listView and set the adapter for the listView
-        ListView gridView = (ListView) findViewById(R.id.create_food_activity);
-        //GridView gridView = (GridView) findViewById(R.id.create_food_activity);
-        gridView.setAdapter(foodNameAdapter);
+        //Get the ListView and set the adapter for the listView
+        ListView listView = (ListView) findViewById(R.id.create_food_activity);
+        listView.setAdapter(foodNameAdapter);
     }
 
     @Override

@@ -21,6 +21,7 @@ public class FoodPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_page);
 
+        // Get the passed Intent and store the values in Strings
         Intent intent = getIntent();
         final String clickedName = intent.getStringExtra("FOOD_NAME");
         final String clickedCategory = intent.getStringExtra("FOOD_CATEGORY");
@@ -45,13 +46,13 @@ public class FoodPage extends AppCompatActivity {
     /**
      * This method is called when the plus button is clicked.
      */
-    public void increment (View view) {
+    public void increment(View view) {
         if (quantity < 100) {
             quantity = quantity + 1;
             displayQuantity(quantity);
         } else {
 
-            //Show a toast when the user tries to go over 100 cups of coffee
+            //Show a toast when the user tries to go over 100
             Toast.makeText(this,
                     "You can't have more than 100",
                     Toast.LENGTH_SHORT).show();
@@ -61,9 +62,9 @@ public class FoodPage extends AppCompatActivity {
     /**
      * This method is called when the minus button is clicked.
      */
-    public void decrement (View view) {
+    public void decrement(View view) {
         if (quantity == 1) {
-            //Show a toast when the user tries to go below 1 cups of coffee
+            //Show a toast when the user tries to go below 1
             Toast.makeText(this,
                     "You can't have less than 1",
                     Toast.LENGTH_SHORT).show();

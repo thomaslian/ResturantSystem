@@ -4,11 +4,11 @@ public class FoodCategory {
 
     private String mCategoryName;
 
-    public FoodCategory(String categoryName){
+    public FoodCategory(String categoryName) {
         mCategoryName = categoryName;
     }
 
-    public String getCategoryName(){
+    public String getCategoryName() {
         return mCategoryName;
     }
 }

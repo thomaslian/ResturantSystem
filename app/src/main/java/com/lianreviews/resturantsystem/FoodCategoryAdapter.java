@@ -54,26 +54,23 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
         // Get the FoodCategory object located at this position in the list
         final FoodCategory currentFoodCategory = getItem(position);
 
+        // Get the TextView and display the category name
         TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.category_name);
         categoryNameTextView.setText(currentFoodCategory.getCategoryName());
-        categoryNameTextView.setOnClickListener(onClickListener);
-
-        return listItemView;
-        }
-
-        View.OnClickListener onClickListener = new View.OnClickListener() {
+        categoryNameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Create an Intent that opens the CreateFood class and pass the category clicked
                 Intent createFoodIntent = new Intent(v.getContext(), CreateFood.class);
                 //Get the button that is clicked
-                TextView b = (TextView)v;
+                TextView b = (TextView) v;
                 //Get the name of the button
                 String buttonText = b.getText().toString();
                 createFoodIntent.putExtra(CATEGORY_NAME, buttonText);
                 v.getContext().startActivity(createFoodIntent);
             }
-        };
+        });
 
-
+        return listItemView;
     }
+}
