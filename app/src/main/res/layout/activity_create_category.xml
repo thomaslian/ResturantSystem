@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linear_layout_create_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,11 +37,15 @@
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/create_food_activity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
+        <GridView
+            android:id="@+id/create_order_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnWidth="60dp"
+            android:gravity="center"
+            android:numColumns="2"
+            android:stretchMode="columnWidth" />
 
     </LinearLayout>
 
@@ -47,10 +54,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:clickable="true"
         android:src="@drawable/ic_add_white_48dp"
         app:fabSize="normal"
-        app:layout_anchor="@id/create_food_activity"
+        android:clickable="true"
+        app:layout_anchor="@id/linear_layout_create_category"
         app:layout_anchorGravity="bottom|right|end" />
 
 </android.support.design.widget.CoordinatorLayout>

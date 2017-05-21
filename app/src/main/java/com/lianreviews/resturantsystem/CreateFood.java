@@ -34,11 +34,12 @@ public class CreateFood extends AppCompatActivity {
         food.add("Banana milkshake");
         food.add("Hamburger");
 
+
         ArrayList<FoodName> foodNames = new ArrayList<>();
 
         // Go through each word and add every food and category
         // with the same "i" to the foodNames ArrayList
-        for(int i = 0; i < foodCategory.size(); i++ ){
+        for (int i = 0; i < foodCategory.size(); i++) {
             if (foodCategory.get(i).equals(clickedCategory)) {
                 foodNames.add(new FoodName(foodCategory.get(i), food.get(i)));
             }

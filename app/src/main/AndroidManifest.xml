@@ -18,7 +18,7 @@
         </activity>
         <activity
             android:name=".CreateCategory"
-            android:parentActivityName="com.lianreviews.resturantsystem.MainActivity" >
+            android:parentActivityName=".MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name=".CreateFood"
-            android:parentActivityName="com.lianreviews.resturantsystem.CreateCategory" >
+            android:parentActivityName=".CreateCategory">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -36,7 +36,7 @@
         </activity>
         <activity
             android:name=".ViewOrder"
-            android:parentActivityName="com.lianreviews.resturantsystem.CreateCategory" >
+            android:parentActivityName=".CreateCategory">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -45,7 +45,7 @@
         </activity>
         <activity
             android:name=".FoodPage"
-            android:parentActivityName="com.lianreviews.resturantsystem.CreateCategory" >
+            android:parentActivityName=".CreateCategory">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data

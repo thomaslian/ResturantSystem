@@ -14,7 +14,7 @@ public class CreateCategory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_order);
+        setContentView(R.layout.activity_create_category);
 
         //Create an ArrayList of Word objects
         ArrayList<FoodCategory> foodCategories = new ArrayList<>();

@@ -33,6 +33,7 @@ public class FoodPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent createFoodIntent = new Intent(v.getContext(), CreateFood.class);
+                // Show a toast with information of what is ordered
                 Toast.makeText(FoodPage.this, quantity + " of " + clickedName + " ordered.",
                         Toast.LENGTH_SHORT).show();
                 createFoodIntent.putExtra(CATEGORY_NAME, clickedCategory);

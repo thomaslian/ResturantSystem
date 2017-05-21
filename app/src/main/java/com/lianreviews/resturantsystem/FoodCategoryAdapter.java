@@ -49,7 +49,7 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.create_order_list_item, parent, false);
+                    R.layout.create_category_list_item, parent, false);
         }
         // Get the FoodCategory object located at this position in the list
         final FoodCategory currentFoodCategory = getItem(position);

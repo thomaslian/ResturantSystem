@@ -60,9 +60,13 @@ public class FoodNameAdapter extends ArrayAdapter<FoodName> {
             public void onClick(View v) {
                 //Create an Intent that opens the CreateFood class and pass the category clicked
                 Intent createFoodIntent = new Intent(v.getContext(), FoodPage.class);
+                // Create a bundle to store multiple strings
                 Bundle extras = new Bundle();
+                // Add the name to the bundle
                 extras.putString("FOOD_NAME", currentFoodName.getName());
+                // Add the category to the bundle
                 extras.putString("FOOD_CATEGORY", currentFoodName.getCategory());
+                // Add the bundle to the intent
                 createFoodIntent.putExtras(extras);
                 v.getContext().startActivity(createFoodIntent);
             }
