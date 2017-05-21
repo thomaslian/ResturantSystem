@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
         createNewOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Create a new intent to open the {@link CreateOrder}
-                Intent createOrderIntent = new Intent(MainActivity.this, CreateOrder.class);
+                //Create a new intent to open the {@link CreateCategory}
+                Intent createOrderIntent = new Intent(MainActivity.this, CreateCategory.class);
 
                 //Start the new activity
                 startActivity(createOrderIntent);

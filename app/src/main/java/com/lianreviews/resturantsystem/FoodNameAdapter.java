@@ -1,6 +1,8 @@
 package com.lianreviews.resturantsystem;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,10 +50,23 @@ public class FoodNameAdapter extends ArrayAdapter<FoodName> {
                     R.layout.create_food_list_item, parent, false);
         }
         // Get the FoodCategory object located at this position in the list
-        FoodName currentFoodName = getItem(position);
+        final FoodName currentFoodName = getItem(position);
 
         TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.food_name);
         categoryNameTextView.setText(currentFoodName.getName());
+
+        categoryNameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Create an Intent that opens the CreateFood class and pass the category clicked
+                Intent createFoodIntent = new Intent(v.getContext(), FoodPage.class);
+                Bundle extras = new Bundle();
+                extras.putString("FOOD_NAME", currentFoodName.getName());
+                extras.putString("FOOD_CATEGORY", currentFoodName.getCategory());
+                createFoodIntent.putExtras(extras);
+                v.getContext().startActivity(createFoodIntent);
+            }
+        });
 
         return listItemView;
     }

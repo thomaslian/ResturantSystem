@@ -9,7 +9,7 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
-public class CreateOrder extends AppCompatActivity {
+public class CreateCategory extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

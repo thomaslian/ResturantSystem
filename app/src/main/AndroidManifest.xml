@@ -16,9 +16,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateOrder" />
-        <activity android:name=".CreateFood" />
-        <activity android:name=".ViewOrder"></activity>
+        <activity
+            android:name=".CreateCategory"
+            android:parentActivityName="com.lianreviews.resturantsystem.MainActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.lianreviews.resturantsystem.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CreateFood"
+            android:parentActivityName="com.lianreviews.resturantsystem.CreateCategory" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.lianreviews.resturantsystem.CreateCategory" />
+        </activity>
+        <activity
+            android:name=".ViewOrder"
+            android:parentActivityName="com.lianreviews.resturantsystem.CreateCategory" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.lianreviews.resturantsystem.CreateCategory" />
+        </activity>
+        <activity
+            android:name=".FoodPage"
+            android:parentActivityName="com.lianreviews.resturantsystem.CreateCategory" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.lianreviews.resturantsystem.CreateCategory" />
+        </activity>
     </application>
 
 </manifest>

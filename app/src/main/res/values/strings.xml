@@ -6,4 +6,5 @@
     <string name="add_new_food_category">Add new category</string>
     <string name="view_order">View order</string>
     <string name="view_final_order">View order</string>
+    <string name="order_button_food_page">Order</string>
 </resources>
