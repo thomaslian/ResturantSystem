@@ -1,7 +1,6 @@
 package com.lianreviews.resturantsystem;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +10,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * Created by Thoma on 19.06.2017.
+ */
 
-public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
-
-    public final static String CATEGORY_NAME = "categoryName";
+public class OrderAdapter extends ArrayAdapter<Order> {
 
     /**
      * This is our own custom constructor (it does not mirror a superclass constructor).
@@ -24,8 +24,7 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
      * @param context   The current context. Used to inflate the layout file.
      * @param arrayList A list of Word objects to display in a list.
      */
-
-    public FoodCategoryAdapter(Activity context, ArrayList<FoodCategory> arrayList) {
+    public OrderAdapter(Activity context, ArrayList<Order> arrayList) {
         //Here, we initialize the ArrayAdapter's internal storage for teh context and the list.
         //The second argument is used when the ArrayAdapter is populating a single TextView.
         //Because this is a custom adapter for two TextViews, the adapter is not going to use this
@@ -49,27 +48,27 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.create_category_list_item, parent, false);
+                    R.layout.create_order_list_item, parent, false);
         }
-        // Get the FoodCategory object located at this position in the list
-        final FoodCategory currentFoodCategory = getItem(position);
+        // Get the FoodName object located at this position in the list
+        final Order currentOrder = getItem(position);
 
-        // Get the TextView and display the category name
-        TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.category_name);
-        categoryNameTextView.setText(currentFoodCategory.getCategoryName());
-        categoryNameTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Create an Intent that opens the CreateFood class and pass the category clicked
-                Intent createFoodIntent = new Intent(v.getContext(), CreateFood.class);
-                //Get the button that is clicked
-                TextView b = (TextView) v;
-                //Get the name of the button
-                String buttonText = b.getText().toString();
-                createFoodIntent.putExtra(CATEGORY_NAME, buttonText);
-                v.getContext().startActivity(createFoodIntent);
-            }
-        });
+        TextView numbersOrderedTextView = (TextView) listItemView.findViewById(R.id.quantity_ordered);
+        int numbersOrdered = currentOrder.getmNumberOfProducts();
+        numbersOrderedTextView.setText(String.valueOf(numbersOrdered));
+
+        TextView foodNameTextView = (TextView) listItemView.findViewById(R.id.food_name);
+        foodNameTextView.setText(currentOrder.getmProductname());
+
+        TextView foodPriceTextView = (TextView) listItemView.findViewById(R.id.food_price);
+        if (numbersOrdered == 1) {
+            String text = "$" + String.valueOf(currentOrder.getmPriceOfProduct());
+            foodPriceTextView.setText(text);
+        } else {
+            int newPrice = (numbersOrdered * currentOrder.getmPriceOfProduct());
+            String text = "$" + String.valueOf(newPrice);
+            foodPriceTextView.setText(text);
+        }
 
         return listItemView;
     }

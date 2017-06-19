@@ -6,13 +6,33 @@ package com.lianreviews.resturantsystem;
 
 public class Order {
 
-    private String mProductname;
+    private String mProductName;
     private Boolean mOrdered = false;
     private int mNumberOfProducts;
+    private int mPriceOfProduct;
 
-    public Order(String productName, Boolean ordered, int numberOfProducts) {
-        mProductname = productName;
+
+    public Order(String productName, Boolean ordered, int numberOfProducts, int priceOfProduct) {
+        mProductName = productName;
         mOrdered = ordered;
         mNumberOfProducts = numberOfProducts;
+        mPriceOfProduct = priceOfProduct;
+    }
+
+    public int getmNumberOfProducts() {
+        return mNumberOfProducts;
+    }
+
+    public int getmPriceOfProduct() {
+        return mPriceOfProduct;
+    }
+
+    public Boolean getmOrdered() {
+
+        return mOrdered;
+    }
+
+    public String getmProductname() {
+        return mProductName;
     }
 }

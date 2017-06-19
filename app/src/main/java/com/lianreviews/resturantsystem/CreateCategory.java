@@ -44,7 +44,7 @@ public class CreateCategory extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_view_cart:
                 // User chose the "View cart", show what is ordered so far
-                Intent intent = new Intent(this, ViewOrder.class);
+                Intent intent = new Intent(this, CreateOrder.class);
                 this.startActivity(intent);
                 return true;
 

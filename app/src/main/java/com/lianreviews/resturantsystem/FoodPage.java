@@ -15,6 +15,7 @@ public class FoodPage extends AppCompatActivity {
 
 
     int quantity = 1;
+    boolean ordered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

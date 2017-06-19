@@ -35,7 +35,7 @@
                 android:value="com.lianreviews.resturantsystem.CreateCategory" />
         </activity>
         <activity
-            android:name=".ViewOrder"
+            android:name=".CreateOrder"
             android:parentActivityName=".CreateCategory">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
