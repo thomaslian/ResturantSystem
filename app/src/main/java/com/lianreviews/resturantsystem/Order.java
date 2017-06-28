@@ -1,10 +1,13 @@
 package com.lianreviews.resturantsystem;
 
-/**
- * Created by Thoma on 21.05.2017.
- */
+import java.io.File;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Order {
+
+public class Order implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String mProductName;
     private Boolean mOrdered = false;
@@ -19,20 +22,31 @@ public class Order {
         mPriceOfProduct = priceOfProduct;
     }
 
-    public int getmNumberOfProducts() {
+    public int getNumberOfProducts() {
         return mNumberOfProducts;
     }
 
-    public int getmPriceOfProduct() {
+    public int getPriceOfProduct() {
         return mPriceOfProduct;
     }
 
-    public Boolean getmOrdered() {
+    public Boolean getOrdered() {
 
         return mOrdered;
     }
 
-    public String getmProductname() {
+    public String getProductName() {
         return mProductName;
+    }
+
+    /**
+     * This method saves the order to be viewed in the cart
+     */
+    public void save(File file, ArrayList<Order> orders) {
+    }
+
+    public ArrayList<Order> load(ArrayList<Order> orders){
+
+        return null;
     }
 }

@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Thoma on 19.06.2017.
- */
 
 public class OrderAdapter extends ArrayAdapter<Order> {
 
@@ -54,18 +51,18 @@ public class OrderAdapter extends ArrayAdapter<Order> {
         final Order currentOrder = getItem(position);
 
         TextView numbersOrderedTextView = (TextView) listItemView.findViewById(R.id.quantity_ordered);
-        int numbersOrdered = currentOrder.getmNumberOfProducts();
+        int numbersOrdered = currentOrder.getNumberOfProducts();
         numbersOrderedTextView.setText(String.valueOf(numbersOrdered));
 
         TextView foodNameTextView = (TextView) listItemView.findViewById(R.id.food_name);
-        foodNameTextView.setText(currentOrder.getmProductname());
+        foodNameTextView.setText(currentOrder.getProductName());
 
         TextView foodPriceTextView = (TextView) listItemView.findViewById(R.id.food_price);
         if (numbersOrdered == 1) {
-            String text = "$" + String.valueOf(currentOrder.getmPriceOfProduct());
+            String text = "$" + String.valueOf(currentOrder.getPriceOfProduct());
             foodPriceTextView.setText(text);
         } else {
-            int newPrice = (numbersOrdered * currentOrder.getmPriceOfProduct());
+            int newPrice = (numbersOrdered * currentOrder.getPriceOfProduct());
             String text = "$" + String.valueOf(newPrice);
             foodPriceTextView.setText(text);
         }
