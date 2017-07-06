@@ -8,4 +8,7 @@
     <string name="view_final_order">View order</string>
     <string name="order_button_food_page">Order</string>
     <string name="title_activity_test">test</string>
+    <string name="add_new_category_text">Add category</string>
+    <string name="add_category_button">Add category</string>
+    <string name="category_name_user_input">Category name</string>
 </resources>

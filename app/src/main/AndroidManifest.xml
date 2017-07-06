@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lianreviews.resturantsystem">
+          package="com.lianreviews.resturantsystem">
 
     <application
         android:allowBackup="true"
@@ -11,46 +11,29 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateCategory"
+            android:name=".Category.CreateCategory"
             android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.lianreviews.resturantsystem.MainActivity" />
         </activity>
         <activity
-            android:name=".CreateFood"
-            android:parentActivityName=".CreateCategory">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.lianreviews.resturantsystem.CreateCategory" />
+            android:name=".Food.CreateFood"
+            android:parentActivityName=".Category.CreateCategory">
         </activity>
         <activity
-            android:name=".CreateOrder"
-            android:parentActivityName=".CreateCategory">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.lianreviews.resturantsystem.CreateCategory" />
+            android:name=".Orders.CreateOrder"
+            android:parentActivityName=".Category.CreateCategory">
         </activity>
         <activity
-            android:name=".FoodPage"
-            android:parentActivityName=".CreateCategory">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.lianreviews.resturantsystem.CreateCategory" />
+            android:name=".Food.FoodPage"
+            android:parentActivityName=".Category.CreateCategory">
+        </activity>
+        <activity
+            android:name=".Category.AddCategory"
+            android:parentActivityName=".Category.CreateCategory">
         </activity>
     </application>
 
