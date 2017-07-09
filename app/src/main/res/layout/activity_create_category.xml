@@ -11,16 +11,24 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/edit_mode_button_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:background="#F44336"
+            android:text="@string/edit_mode_off"/>
+
 
         <GridView
             android:id="@+id/create_order_activity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="10"
             android:columnWidth="60dp"
             android:gravity="center"
             android:numColumns="2"
             android:stretchMode="columnWidth" />
-
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

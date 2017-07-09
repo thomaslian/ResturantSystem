@@ -1,25 +1,35 @@
-package com.lianreviews.resturantsystem.Category;
+package com.lianreviews.resturantsystem.category;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 
-import com.lianreviews.resturantsystem.Orders.CreateOrder;
+import com.lianreviews.resturantsystem.orders.CreateOrder;
 import com.lianreviews.resturantsystem.R;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class CreateCategory extends AppCompatActivity {
+
+    private Boolean editMode = false;
+
+
+    private ArrayList<FoodCategory> foodCategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +37,7 @@ public class CreateCategory extends AppCompatActivity {
         setContentView(R.layout.activity_create_category);
 
         //Create an ArrayList of FoodCategory objects
-        ArrayList<FoodCategory> foodCategories = new ArrayList<>();
+        foodCategories = new ArrayList<>();
         foodCategories.add(new FoodCategory("Drinks"));
         foodCategories.add(new FoodCategory("Food"));
         foodCategories.add(new FoodCategory("Dessert"));
@@ -37,21 +47,45 @@ public class CreateCategory extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Create an Intent that opens the AddCategory class and pass the category clicked
+                //Create an Intent that opens the AddCategory class and pass
                 Intent addCategoryIntent = new Intent(v.getContext(), AddCategory.class);
                 v.getContext().startActivity(addCategoryIntent);
             }
         });
 
+        final Button editModeButton = (Button) findViewById(R.id.edit_mode_button_category);
+        editModeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!editMode) {
+                    editMode = true;
+                    editModeButton.setBackgroundColor(ContextCompat.getColor(CreateCategory.this,
+                            R.color.orderColor));
+                    editModeButton.setText(getResources().getString(R.string.edit_mode_on));
+                    setAdapter();
+                } else {
+                    editMode = false;
+                    editModeButton.setBackgroundColor(ContextCompat.getColor(CreateCategory.this,
+                            R.color.cancelColor));
+                    editModeButton.setText(getResources().getString(R.string.edit_mode_off));
+                    setAdapter();
+                }
+            }
+        });
+
+        setAdapter();
+    }
+
+        public void setAdapter(){
         FoodCategoryAdapter foodCategoryAdapter;
 
-        // If there is no saved category from the user, load the defualt categories
+        // If there is no saved category from the user, load the default categories
         if (loadCategoryNames() != null) {
             //Create an FoodCategoryAdapter, whose data source is a list of FoodCategory.
             //The adapter knows how to create list items for each item in the list.
-            foodCategoryAdapter = new FoodCategoryAdapter(this, loadCategoryNames());
+            foodCategoryAdapter = new FoodCategoryAdapter(this, loadCategoryNames(), editMode);
         } else {
-            foodCategoryAdapter = new FoodCategoryAdapter(this, foodCategories);
+            foodCategoryAdapter = new FoodCategoryAdapter(this, foodCategories, editMode);
         }
 
         //Get the GridView and set the foodCategoryAdapter for the gridView
@@ -60,7 +94,7 @@ public class CreateCategory extends AppCompatActivity {
     }
 
     private ArrayList<FoodCategory> loadCategoryNames(){
-        File file = new File(getFilesDir(), "currentCategories.ser");
+        File file = new File(getFilesDir(), FoodCategory.categoryFile);
 
         ArrayList<FoodCategory> categories = null;
 

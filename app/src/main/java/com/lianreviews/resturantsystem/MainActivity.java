@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.lianreviews.resturantsystem.Category.CreateCategory;
+import com.lianreviews.resturantsystem.category.CreateCategory;
 
 public class MainActivity extends AppCompatActivity {
 

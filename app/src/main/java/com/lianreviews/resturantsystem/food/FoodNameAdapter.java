@@ -1,7 +1,8 @@
-package com.lianreviews.resturantsystem.Category;
+package com.lianreviews.resturantsystem.food;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.lianreviews.resturantsystem.Food.CreateFood;
 import com.lianreviews.resturantsystem.R;
 
 import java.util.ArrayList;
 
 
-public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
-
-    public final static String CATEGORY_NAME = "categoryName";
+public class FoodNameAdapter extends ArrayAdapter<FoodName> {
 
     /**
      * This is our own custom constructor (it does not mirror a superclass constructor).
@@ -27,8 +25,7 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
      * @param context   The current context. Used to inflate the layout file.
      * @param arrayList A list of Word objects to display in a list.
      */
-
-    public FoodCategoryAdapter(Activity context, ArrayList<FoodCategory> arrayList) {
+    public FoodNameAdapter(Activity context, ArrayList<FoodName> arrayList) {
         //Here, we initialize the ArrayAdapter's internal storage for teh context and the list.
         //The second argument is used when the ArrayAdapter is populating a single TextView.
         //Because this is a custom adapter for two TextViews, the adapter is not going to use this
@@ -52,24 +49,27 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.create_category_list_item, parent, false);
+                    R.layout.create_food_list_item, parent, false);
         }
-        // Get the FoodCategory object located at this position in the list
-        final FoodCategory currentFoodCategory = getItem(position);
+        // Get the FoodName object located at this position in the list
+        final FoodName currentFoodName = getItem(position);
 
-        // Get the TextView and display the category name
-        TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.category_name);
-        categoryNameTextView.setText(currentFoodCategory.getCategoryName());
+        TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.food_name);
+        categoryNameTextView.setText(currentFoodName.getName());
+
         categoryNameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Create an Intent that opens the CreateFood class and pass the category clicked
-                Intent createFoodIntent = new Intent(v.getContext(), CreateFood.class);
-                //Get the button that is clicked
-                TextView b = (TextView) v;
-                //Get the name of the button
-                String buttonText = b.getText().toString();
-                createFoodIntent.putExtra(CATEGORY_NAME, buttonText);
+                //Create an Intent that opens the FoodPage class
+                Intent createFoodIntent = new Intent(v.getContext(), FoodPage.class);
+                // Create a bundle to store multiple strings
+                Bundle extras = new Bundle();
+                // Add the name to the bundle
+                extras.putString("FOOD_NAME", currentFoodName.getName());
+                // Add the category to the bundle
+                extras.putString("FOOD_CATEGORY", currentFoodName.getCategory());
+                // Add the bundle to the intent
+                createFoodIntent.putExtras(extras);
                 v.getContext().startActivity(createFoodIntent);
             }
         });

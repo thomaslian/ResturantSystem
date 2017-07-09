@@ -1,7 +1,9 @@
-package com.lianreviews.resturantsystem.Food;
+package com.lianreviews.resturantsystem.food;
 
 
-public class FoodName {
+import java.io.Serializable;
+
+public class FoodName implements Serializable {
 
     private String mCategory;
     private String mName;

@@ -1,9 +1,11 @@
-package com.lianreviews.resturantsystem.Orders;
+package com.lianreviews.resturantsystem.orders;
 
 import java.io.Serializable;
 
 
 public class Order implements Serializable {
+
+    public static final String tempOrderFileName = "tempOrder.ser";
 
     private static final long serialVersionUID = 1L;
 

@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/create_order_activity">
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-</ListView>
+    <Button
+        android:id="@+id/cancel_order_button_in_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F44336"
+        android:textColor="@android:color/white"
+        android:text="@string/cancel_order_in_cart"/>
+
+    <ListView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="10"
+    android:id="@+id/create_order_activity">
+    </ListView>
+
+    <Button
+        android:id="@+id/order_button_in_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:background="#43A047"
+        android:text="@string/order_button_in_cart"/>
+
+</LinearLayout>

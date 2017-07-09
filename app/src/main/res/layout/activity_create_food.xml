@@ -5,9 +5,18 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/create_food_activity_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/edit_mode_button_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:background="#F44336"
+            android:text="@string/edit_mode_off"/>
 
         <ListView
             android:id="@+id/create_food_activity"
@@ -17,6 +26,7 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/food_name_floating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -24,7 +34,7 @@
         android:clickable="true"
         android:src="@drawable/ic_add_white_48dp"
         app:fabSize="normal"
-        app:layout_anchor="@id/create_food_activity"
+        app:layout_anchor="@id/create_food_activity_linear_layout"
         app:layout_anchorGravity="bottom|right|end" />
 
 </android.support.design.widget.CoordinatorLayout>

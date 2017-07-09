@@ -1,4 +1,4 @@
-package com.lianreviews.resturantsystem.Category;
+package com.lianreviews.resturantsystem.category;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +18,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AddCategory extends AppCompatActivity implements Serializable  {
+public class AddCategory extends AppCompatActivity  {
 
 
     @Override
@@ -35,7 +34,7 @@ public class AddCategory extends AppCompatActivity implements Serializable  {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (editText.getText() != null) {
+                if (!editText.getText().toString().equals("") && !editText.getText().toString().equals(" ")) {
                     String userInputCategory = editText.getText().toString();
                     Log.d("Added ", userInputCategory);
                     saveCategory(userInputCategory);

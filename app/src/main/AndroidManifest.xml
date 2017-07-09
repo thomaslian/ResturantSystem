@@ -16,24 +16,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Category.CreateCategory"
+            android:name=".category.CreateCategory"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity
-            android:name=".Food.CreateFood"
-            android:parentActivityName=".Category.CreateCategory">
+            android:name=".food.CreateFood"
+            android:parentActivityName=".category.CreateCategory">
         </activity>
         <activity
-            android:name=".Orders.CreateOrder"
-            android:parentActivityName=".Category.CreateCategory">
+            android:name=".orders.CreateOrder"
+            android:parentActivityName=".category.CreateCategory">
         </activity>
         <activity
-            android:name=".Food.FoodPage"
-            android:parentActivityName=".Category.CreateCategory">
+            android:name=".food.FoodPage"
+            android:parentActivityName=".category.CreateCategory">
         </activity>
         <activity
-            android:name=".Category.AddCategory"
-            android:parentActivityName=".Category.CreateCategory">
+            android:name=".category.AddCategory"
+            android:parentActivityName=".category.CreateCategory">
+        </activity>
+        <activity
+            android:name=".food.AddFoodName"
+            android:parentActivityName=".category.CreateCategory">
         </activity>
     </application>
 

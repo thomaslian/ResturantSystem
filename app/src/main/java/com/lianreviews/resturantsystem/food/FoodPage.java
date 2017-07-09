@@ -1,4 +1,4 @@
-package com.lianreviews.resturantsystem.Food;
+package com.lianreviews.resturantsystem.food;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lianreviews.resturantsystem.Orders.Order;
+import com.lianreviews.resturantsystem.orders.Order;
 import com.lianreviews.resturantsystem.R;
 
 import java.io.File;
@@ -21,7 +21,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import static com.lianreviews.resturantsystem.Category.FoodCategoryAdapter.CATEGORY_NAME;
+import static com.lianreviews.resturantsystem.category.FoodCategoryAdapter.CATEGORY_NAME;
 
 
 public class FoodPage extends AppCompatActivity {

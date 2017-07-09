@@ -11,4 +11,13 @@
     <string name="add_new_category_text">Add category</string>
     <string name="add_category_button">Add category</string>
     <string name="category_name_user_input">Category name</string>
+    <string name="add_food_name">Add food</string>
+    <string name="add_food_name_hint">Food name</string>
+    <string name="drinks_hint_category">Drinks</string>
+    <string name="category_text_view_add_food">Category</string>
+    <string name="add_food_button">Add food</string>
+    <string name="cancel_order_in_cart">Cancel order</string>
+    <string name="order_button_in_cart">Order</string>
+    <string name="edit_mode_off">Edit mode: off</string>
+    <string name="edit_mode_on">Edit mode: on</string>
 </resources>
