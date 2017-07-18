@@ -5,6 +5,9 @@ import java.io.Serializable;
 
 public class FoodName implements Serializable {
 
+    public final static String FOOD_NAME = "foodName";
+    public final static String FOOD_NAME_SAVE = "currentFoodNames.ser";
+
     private String mCategory;
     private String mName;
 

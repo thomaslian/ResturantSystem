@@ -27,9 +27,8 @@ import java.util.ArrayList;
 public class CreateCategory extends AppCompatActivity {
 
     private Boolean editMode = false;
-
-
     private ArrayList<FoodCategory> foodCategories;
+    private Button editModeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,9 @@ public class CreateCategory extends AppCompatActivity {
             }
         });
 
-        final Button editModeButton = (Button) findViewById(R.id.edit_mode_button_category);
+        setAdapter();
+
+        editModeButton = (Button) findViewById(R.id.edit_mode_button_category);
         editModeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,11 +73,9 @@ public class CreateCategory extends AppCompatActivity {
                 }
             }
         });
-
-        setAdapter();
     }
 
-        public void setAdapter(){
+        private void setAdapter(){
         FoodCategoryAdapter foodCategoryAdapter;
 
         // If there is no saved category from the user, load the default categories

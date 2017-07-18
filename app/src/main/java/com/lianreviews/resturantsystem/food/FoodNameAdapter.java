@@ -9,13 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lianreviews.resturantsystem.R;
 
 import java.util.ArrayList;
 
+import static com.lianreviews.resturantsystem.category.FoodCategory.CATEGORY_NAME;
+import static com.lianreviews.resturantsystem.food.FoodName.FOOD_NAME;
+
 
 public class FoodNameAdapter extends ArrayAdapter<FoodName> {
+
+    private Boolean mEditMode;
 
     /**
      * This is our own custom constructor (it does not mirror a superclass constructor).
@@ -24,13 +30,18 @@ public class FoodNameAdapter extends ArrayAdapter<FoodName> {
      *
      * @param context   The current context. Used to inflate the layout file.
      * @param arrayList A list of Word objects to display in a list.
+     * @param editMode Gives information of editMode is enabled or not by the user
+     * @param editMode Shows what category that belongs to this food
      */
-    public FoodNameAdapter(Activity context, ArrayList<FoodName> arrayList) {
+    public FoodNameAdapter(Activity context, ArrayList<FoodName> arrayList, Boolean editMode) {
         //Here, we initialize the ArrayAdapter's internal storage for teh context and the list.
         //The second argument is used when the ArrayAdapter is populating a single TextView.
         //Because this is a custom adapter for two TextViews, the adapter is not going to use this
         //second argument, so it can be any value. Here, we used 0.
         super(context, 0, arrayList);
+
+        // Assign editMode
+        mEditMode = editMode;
     }
 
     /**
@@ -60,17 +71,27 @@ public class FoodNameAdapter extends ArrayAdapter<FoodName> {
         categoryNameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Create an Intent that opens the FoodPage class
-                Intent createFoodIntent = new Intent(v.getContext(), FoodPage.class);
-                // Create a bundle to store multiple strings
-                Bundle extras = new Bundle();
-                // Add the name to the bundle
-                extras.putString("FOOD_NAME", currentFoodName.getName());
-                // Add the category to the bundle
-                extras.putString("FOOD_CATEGORY", currentFoodName.getCategory());
-                // Add the bundle to the intent
-                createFoodIntent.putExtras(extras);
-                v.getContext().startActivity(createFoodIntent);
+                if (mEditMode) {
+                    //Create an Intent that opens the AddFoodName class and pass the category clicked
+                    Intent addFoodNameIntent = new Intent(v.getContext(), AddFoodName.class);
+                    addFoodNameIntent.putExtra(CATEGORY_NAME, currentFoodName.getCategory());
+                    addFoodNameIntent.putExtra(FOOD_NAME, currentFoodName.getName());
+                    v.getContext().startActivity(addFoodNameIntent);
+                    Toast.makeText(getContext(), "Edit mode is enabled",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    //Create an Intent that opens the FoodPage class
+                    Intent createFoodIntent = new Intent(v.getContext(), FoodPage.class);
+                    // Create a bundle to store multiple strings
+                    Bundle extras = new Bundle();
+                    // Add the name to the bundle
+                    extras.putString(FOOD_NAME, currentFoodName.getName());
+                    // Add the category to the bundle
+                    extras.putString(CATEGORY_NAME, currentFoodName.getCategory());
+                    // Add the bundle to the intent
+                    createFoodIntent.putExtras(extras);
+                    v.getContext().startActivity(createFoodIntent);
+                }
             }
         });
 

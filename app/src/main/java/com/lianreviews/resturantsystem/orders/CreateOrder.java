@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lianreviews.resturantsystem.R;
+import com.lianreviews.resturantsystem.ResourceManager;
 import com.lianreviews.resturantsystem.category.CreateCategory;
 
 import java.io.File;
@@ -43,10 +44,10 @@ public class CreateOrder extends AppCompatActivity {
 
         OrderAdapter orderAdapter;
 
-        if (loadOrder() != null) {
+        if (ResourceManager.loadOrders(this) != null) {
             //Create an OrderAdapter, whose data source is a list of Order.
             //The adapter knows how to create list items for each item in the list.
-            orderAdapter = new OrderAdapter(this, loadOrder());
+            orderAdapter = new OrderAdapter(this, ResourceManager.loadOrders(this));
         } else {
             ArrayList<Order> orders = new ArrayList<>();
             orders.add(new Order("Nothing ordered", true, 1, 2));
@@ -56,32 +57,6 @@ public class CreateOrder extends AppCompatActivity {
         //Get the ListView and set the adapter for the listView
         ListView listView = (ListView) findViewById(R.id.create_order_activity);
         listView.setAdapter(orderAdapter);
-    }
-
-    private ArrayList<Order> loadOrder(){
-        //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
-        //Without this we would not get access to the file directory of the app
-        File file = new File(getFilesDir(), Order.tempOrderFileName);
-
-        ArrayList<Order> ordersFromSavedFile = null;
-
-        // Check if file exist and if it exist load any other saved orders list
-        if (file.exists()) {
-            try {
-                //Read Order array from file.
-                FileInputStream fis = new FileInputStream(file);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                ordersFromSavedFile = (ArrayList<Order>) ois.readObject();
-                ois.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        return ordersFromSavedFile;
     }
 
     /**

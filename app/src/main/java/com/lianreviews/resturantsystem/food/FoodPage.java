@@ -9,19 +9,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lianreviews.resturantsystem.ResourceManager;
 import com.lianreviews.resturantsystem.orders.Order;
 import com.lianreviews.resturantsystem.R;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import static com.lianreviews.resturantsystem.category.FoodCategoryAdapter.CATEGORY_NAME;
+import static com.lianreviews.resturantsystem.category.FoodCategory.CATEGORY_NAME;
+import static com.lianreviews.resturantsystem.food.FoodName.FOOD_NAME;
 
 
 public class FoodPage extends AppCompatActivity {
@@ -31,8 +31,6 @@ public class FoodPage extends AppCompatActivity {
 
     private String filename = "tempOrder.ser";
 
-    private ArrayList<Order> orders = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +38,8 @@ public class FoodPage extends AppCompatActivity {
 
         // Get the passed Intent and store the values in Strings
         Intent intent = getIntent();
-        final String clickedName = intent.getStringExtra("FOOD_NAME");
-        final String clickedCategory = intent.getStringExtra("FOOD_CATEGORY");
+        final String clickedName = intent.getStringExtra(FOOD_NAME);
+        final String clickedCategory = intent.getStringExtra(CATEGORY_NAME);
 
         TextView foodNameTextView = (TextView) findViewById(R.id.food_name_food_page_text_view);
         foodNameTextView.setText(clickedName);
@@ -50,7 +48,7 @@ public class FoodPage extends AppCompatActivity {
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaveOrder(clickedName, true, quantity, 10);
+                saveOrder(clickedName, true, quantity, 10);
                 Intent createFoodIntent = new Intent(v.getContext(), CreateFood.class);
                 // Show a toast with information of what is ordered
                 Toast.makeText(FoodPage.this, quantity + " of " + clickedName + " ordered.",
@@ -64,39 +62,26 @@ public class FoodPage extends AppCompatActivity {
     /**
      * This method saves the order to be viewed in the cart
      */
-    public void SaveOrder(String clickedName, Boolean clicked, int quantity, int price) {
-
+    public void saveOrder(String clickedName, Boolean clicked, int quantity, int price) {
         //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
         //Without this we would not get access to the file directory of the app
         File file = new File(getFilesDir(), filename);
 
-        // Check if file exist and if it exist load any other saved orders list
+        ArrayList<Order> orders = new ArrayList<>();
+
+
+        // Check if one of the ordered names already contains the one that is
+        // being ordered. Add the number of ordered to the quantity and remove the
+        // old one. So we would not have multiple of the same ones in the cart.
         if (file.exists()) {
-            try {
-                //Read Order array from file.
-                FileInputStream fis = new FileInputStream(file);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                ArrayList<Order> ordersFromSavedFile = (ArrayList<Order>) ois.readObject();
-                Order order;
-                for (int i = 0; i < ordersFromSavedFile.size(); i++) {
-                    order = ordersFromSavedFile.get(i);
-                    Log.d("Loaded food name: ", order.getProductName());
-                    // Check if one of the ordered names already contains the one that is
-                    // being ordered. Add the number of ordered to the quantity and remove the
-                    // old one. So we would not have multiple of the same ones in the cart.
-                    if (order.getProductName().equals(clickedName)){
-                        quantity = order.getNumberOfProducts() + quantity;
-                        ordersFromSavedFile.remove(i);
-                    }
+            orders = ResourceManager.loadOrders(FoodPage.this);
+            Order order;
+            for (int i = 0; i < orders.size(); i++) {
+                order = orders.get(i);
+                if (order.getProductName().equals(clickedName)) {
+                    quantity = order.getNumberOfProducts() + quantity;
+                    orders.remove(i);
                 }
-                orders = ordersFromSavedFile;
-                ois.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
 

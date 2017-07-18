@@ -1,9 +1,7 @@
 package com.lianreviews.resturantsystem.category;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +13,12 @@ import android.widget.Toast;
 import com.lianreviews.resturantsystem.food.CreateFood;
 import com.lianreviews.resturantsystem.R;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
+
+import static com.lianreviews.resturantsystem.category.FoodCategory.CATEGORY_NAME;
 
 
 public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
-
-    public final static String CATEGORY_NAME = "categoryName";
 
     private Boolean mEditMode;
 
@@ -36,6 +29,7 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
      *
      * @param context   The current context. Used to inflate the layout file.
      * @param arrayList A list of Word objects to display in a list.
+     * @param editMode Gives information of editMode is enabled or not by the user
      */
 
     public FoodCategoryAdapter(Activity context, ArrayList<FoodCategory> arrayList, Boolean editMode) {
@@ -45,7 +39,7 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
         //second argument, so it can be any value. Here, we used 0.
         super(context, 0, arrayList);
 
-        // Assign if editMode is enabled or not
+        // Assign editMode
         mEditMode = editMode;
     }
 
@@ -77,7 +71,10 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
         categoryNameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mEditMode) {
+                if (mEditMode) {
+                    Toast.makeText(getContext(), "Edit mode is enabled",
+                            Toast.LENGTH_SHORT).show();
+                } else {
                     //Create an Intent that opens the CreateFood class and pass the category clicked
                     Intent createFoodIntent = new Intent(v.getContext(), CreateFood.class);
                     //Get the button that is clicked
@@ -86,9 +83,6 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
                     String buttonText = b.getText().toString();
                     createFoodIntent.putExtra(CATEGORY_NAME, buttonText);
                     v.getContext().startActivity(createFoodIntent);
-                } else {
-                    Toast.makeText(getContext(), "Edit mode is enabled",
-                            Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.lianreviews.resturantsystem.ResourceManager;
 import com.lianreviews.resturantsystem.category.CreateCategory;
 import com.lianreviews.resturantsystem.category.FoodCategory;
 import com.lianreviews.resturantsystem.category.FoodCategoryAdapter;
@@ -25,9 +26,13 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.lianreviews.resturantsystem.category.FoodCategory.CATEGORY_NAME;
+
 public class CreateFood extends AppCompatActivity {
 
     private Boolean editMode = false;
+    private ArrayList<FoodName> foodNames = new ArrayList<>();
+    private Button editModeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,7 @@ public class CreateFood extends AppCompatActivity {
 
         // Create an intent and get the clicked food category
         Intent intent = getIntent();
-        final String clickedCategory = intent.getStringExtra(FoodCategoryAdapter.CATEGORY_NAME);
+        final String clickedCategory = intent.getStringExtra(CATEGORY_NAME);
 
         // Create a list of all categories
         List<String> foodCategory = new ArrayList<>();
@@ -46,7 +51,7 @@ public class CreateFood extends AppCompatActivity {
         foodCategory.add("Food");
 
         // Create a list of all the food
-        List<String> food = new ArrayList<>();
+        final List<String> food = new ArrayList<>();
         food.add("Cola");
         food.add("Fanta");
         food.add("Banana milkshake");
@@ -59,30 +64,12 @@ public class CreateFood extends AppCompatActivity {
             public void onClick(View v) {
                 //Create an Intent that opens the AddFoodName class and pass the category clicked
                 Intent addFoodNameIntent = new Intent(v.getContext(), AddFoodName.class);
-                addFoodNameIntent.putExtra(FoodCategoryAdapter.CATEGORY_NAME, clickedCategory);
+                addFoodNameIntent.putExtra(CATEGORY_NAME, clickedCategory);
                 v.getContext().startActivity(addFoodNameIntent);
             }
         });
 
-        final Button editModeButton = (Button) findViewById(R.id.edit_mode_button_food);
-        editModeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!editMode){
-                    editMode = true;
-                    editModeButton.setBackgroundColor(ContextCompat.getColor(CreateFood.this,
-                            R.color.orderColor));
-                    editModeButton.setText(getResources().getString(R.string.edit_mode_on));
-                } else {
-                    editMode = false;
-                    editModeButton.setBackgroundColor(ContextCompat.getColor(CreateFood.this,
-                            R.color.cancelColor));
-                    editModeButton.setText(getResources().getString(R.string.edit_mode_off));
-                }
-            }
-        });
 
-        ArrayList<FoodName> foodNames = new ArrayList<>();
 
         // Go through each word and add every food and category
         // with the same "i" to the foodNames ArrayList
@@ -92,51 +79,50 @@ public class CreateFood extends AppCompatActivity {
             }
         }
 
+        setAdapter(foodNames, clickedCategory);
+
+        editModeButton = (Button) findViewById(R.id.edit_mode_button_food);
+        editModeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!editMode) {
+                    editMode = true;
+                    editModeButton.setBackgroundColor(ContextCompat.getColor(CreateFood.this,
+                            R.color.orderColor));
+                    editModeButton.setText(getResources().getString(R.string.edit_mode_on));
+                    setAdapter(foodNames, clickedCategory);
+                } else {
+                    editMode = false;
+                    editModeButton.setBackgroundColor(ContextCompat.getColor(CreateFood.this,
+                            R.color.cancelColor));
+                    editModeButton.setText(getResources().getString(R.string.edit_mode_off));
+                }
+            }
+        });
+    }
+
+    private void setAdapter(ArrayList<FoodName> foodNames, String clickedCategory) {
         FoodNameAdapter foodNameAdapter = null;
         ArrayList<FoodName> sortedNames = new ArrayList<>();
 
-        if (loadFoodNames() == null) {
+        if (ResourceManager.loadFoodNames(this) == null) {
             //Create an FoodNameAdapter, whose data source is a list of FoodName.
             //The adapter knows how to create list items for each item in the list.
-            foodNameAdapter = new FoodNameAdapter(this, foodNames);
+            foodNameAdapter = new FoodNameAdapter(this, foodNames, editMode);
         } else {
-            ArrayList<FoodName> loadedNames = loadFoodNames();
-                for (int i = 0; i < loadedNames.size(); i++) {
-                    FoodName foodname = loadedNames.get(i);
-                    if (foodname.getCategory().equals(clickedCategory)) {
-                        sortedNames.add(foodname);
-                    }
-                foodNameAdapter = new FoodNameAdapter(this, sortedNames);
+            ArrayList<FoodName> loadedNames = ResourceManager.loadFoodNames(this);
+            for (int i = 0; i < loadedNames.size(); i++) {
+                FoodName foodname = loadedNames.get(i);
+                if (foodname.getCategory().equals(clickedCategory)) {
+                    sortedNames.add(foodname);
+                }
+                foodNameAdapter = new FoodNameAdapter(this, sortedNames, editMode);
             }
         }
 
         //Get the ListView and set the adapter for the listView
         ListView listView = (ListView) findViewById(R.id.create_food_activity);
         listView.setAdapter(foodNameAdapter);
-    }
-
-    private ArrayList<FoodName> loadFoodNames() {
-        File file = new File(getFilesDir(), "currentFoodNames.ser");
-
-        ArrayList<FoodName> foodNames = null;
-
-        // Check if file exist and if it exist load any other saved orders list
-        if (file.exists()) {
-            try {
-                //Read Order array from file.
-                FileInputStream fis = new FileInputStream(file);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                foodNames = (ArrayList<FoodName>) ois.readObject();
-                ois.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        return foodNames;
     }
 
     @Override
