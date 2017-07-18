@@ -90,6 +90,10 @@ public class AddFoodName extends AppCompatActivity {
         //Without this we would not get access to the file directory of the app
         File file = new File(getFilesDir(), "currentFoodNames.ser");
 
+        if (file.exists()){
+            foodNames = ResourceManager.loadFoodNames(AddFoodName.this);
+        }
+
         // Add the new category to the orders list
         foodNames.add(new FoodName(category, foodName));
 
