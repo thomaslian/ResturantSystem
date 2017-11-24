@@ -78,7 +78,8 @@ public class CreateOrder extends AppCompatActivity {
                         //Add the new order to the rest of the orders
                         orders.add(new Orders(order, orders.size() + 1));
                     } else {
-                        // ... OR create a new arraylist and add the order to that one
+                        // ... OR if ther is no savefile, create a new arraylist and add the
+                        // order to that one
                         orders = new ArrayList<>();
                         orders.add(new Orders(order, 1));
                     }

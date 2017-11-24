@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Orders");
 
-        //Show the current shopping cart with a OrderAdapter
+        //Show the current orders on the main page
         if (ResourceManager.loadOrders(this) != null) {
             //Create an OrderAdapter, whose data source is a list of Order.
             //The adapter knows how to create list items for each item in the list.

@@ -3,9 +3,6 @@ package com.lianreviews.resturantsystem.orders;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by Thoma on 24-Nov-17.
- */
 
 public class Orders implements Serializable {
 
