@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,12 +8,25 @@
     android:orientation="vertical"
     tools:context="com.lianreviews.resturantsystem.MainActivity">
 
-    <TextView
-        android:id="@+id/create_new_order"
-        style="@style/MainPage"
+    <LinearLayout
+        android:id="@+id/main_activity_linear_layout"
         android:layout_width="match_parent"
+        android:layout_height="558dp"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/main_page_floating_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_a_new_order" />
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add_white_48dp"
+        app:fabSize="normal"
+        app:layout_anchor="@id/main_activity_linear_layout"
+        app:layout_anchorGravity="bottom|right|end" />
 
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

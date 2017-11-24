@@ -28,15 +28,17 @@ import static com.lianreviews.resturantsystem.food.FoodName.FOOD_NAME;
 
 public class AddFoodName extends AppCompatActivity {
 
+    ArrayList<FoodName> foodNames;
     private EditText editText;
     private String clickedCategory = "";
     private String clickedName = "";
-    ArrayList<FoodName> foodNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food_name);
+
+        foodNames = new ArrayList<>();
 
         Intent intent = getIntent();
         clickedCategory = intent.getStringExtra(CATEGORY_NAME);
@@ -44,33 +46,48 @@ public class AddFoodName extends AppCompatActivity {
 
         editText = (EditText) findViewById(R.id.food_name_user_input);
 
-        if (!clickedName.equals("")){
+        //Check if there is a clicked name or not. If it is an clicked name, the user
+        // want to edit the name of an Food that exist. If not, the user want to add a new food
+        if (!clickedName.equals("")) {
             editText.setText(clickedName);
         }
 
+        //Show the category the Food is displayed in
         TextView categoryTextView = (TextView) findViewById(R.id.category_name_add_food);
         categoryTextView.setText(clickedCategory);
 
-        foodNames = ResourceManager.loadFoodNames(this);
+        //Load FoodNames from the ResourceMananger
+        if (ResourceManager.loadFoodNames(this) == null) {
+            foodNames = null;
+        } else {
+            foodNames = ResourceManager.loadFoodNames(this);
+        }
 
+
+        //Create a button that saves the new or edited FoodName
         Button button = (Button) findViewById(R.id.add_food_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!editText.getText().toString().equals("") && !editText.getText().toString().equals(" ")) {
                     String userInputFoodName = editText.getText().toString();
-                    // Go through each word and add every food and category
-                    // with the same "i" to the foodNames ArrayList
-                    for (int i = 0; i < foodNames.size(); i++) {
-                        FoodName foodname = foodNames.get(i);
-                        if (userInputFoodName.equals(foodname.getName())) {
-                            foodNames.remove(i);
-                        }
-                        if (!clickedName.equals("")) {
-                            if (clickedName.equals(foodname.getName())) {
+
+                    if (foodNames != null) {
+                        // Go through each word and add every food and category
+                        // with the same "i" to the foodNames ArrayList
+                        for (int i = 0; i < foodNames.size(); i++) {
+                            FoodName foodname = foodNames.get(i);
+                            if (userInputFoodName.equals(foodname.getName())) {
                                 foodNames.remove(i);
                             }
+                            if (!clickedName.equals("")) {
+                                if (clickedName.equals(foodname.getName())) {
+                                    foodNames.remove(i);
+                                }
+                            }
                         }
+                    } else {
+                        foodNames = new ArrayList<>();
                     }
                     saveFood(clickedCategory, userInputFoodName, foodNames);
                     Toast.makeText(AddFoodName.this, userInputFoodName + " added!",
@@ -90,7 +107,7 @@ public class AddFoodName extends AppCompatActivity {
         //Without this we would not get access to the file directory of the app
         File file = new File(getFilesDir(), "currentFoodNames.ser");
 
-        if (file.exists()){
+        if (file.exists()) {
             foodNames = ResourceManager.loadFoodNames(AddFoodName.this);
         }
 

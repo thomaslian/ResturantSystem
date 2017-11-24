@@ -12,21 +12,15 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.lianreviews.resturantsystem.ResourceManager;
-import com.lianreviews.resturantsystem.category.CreateCategory;
-import com.lianreviews.resturantsystem.category.FoodCategory;
-import com.lianreviews.resturantsystem.category.FoodCategoryAdapter;
 import com.lianreviews.resturantsystem.orders.CreateOrder;
 import com.lianreviews.resturantsystem.R;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.lianreviews.resturantsystem.category.FoodCategory.CATEGORY_NAME;
+import static com.lianreviews.resturantsystem.food.FoodName.FOOD_NAME;
 
 public class CreateFood extends AppCompatActivity {
 
@@ -57,14 +51,14 @@ public class CreateFood extends AppCompatActivity {
         food.add("Banana milkshake");
         food.add("Hamburger");
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton)
-                findViewById(R.id.food_name_floating_button);
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.food_name_floating_button);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Create an Intent that opens the AddFoodName class and pass the category clicked
                 Intent addFoodNameIntent = new Intent(v.getContext(), AddFoodName.class);
                 addFoodNameIntent.putExtra(CATEGORY_NAME, clickedCategory);
+                addFoodNameIntent.putExtra(FOOD_NAME, "");
                 v.getContext().startActivity(addFoodNameIntent);
             }
         });

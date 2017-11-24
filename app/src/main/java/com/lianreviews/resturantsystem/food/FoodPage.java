@@ -74,7 +74,7 @@ public class FoodPage extends AppCompatActivity {
         // being ordered. Add the number of ordered to the quantity and remove the
         // old one. So we would not have multiple of the same ones in the cart.
         if (file.exists()) {
-            orders = ResourceManager.loadOrders(FoodPage.this);
+            orders = ResourceManager.loadTempOrder(FoodPage.this);
             Order order;
             for (int i = 0; i < orders.size(); i++) {
                 order = orders.get(i);
@@ -86,7 +86,7 @@ public class FoodPage extends AppCompatActivity {
         }
 
         // Add the new order to the orders list
-        orders.add(new Order(clickedName, clicked, quantity, price));
+        orders.add(new Order(clickedName, clicked, quantity, price, 0));
 
         // Save the orders list with the new order
         try {
