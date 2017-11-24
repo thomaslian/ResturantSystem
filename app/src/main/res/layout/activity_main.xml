@@ -8,14 +8,14 @@
     android:orientation="vertical"
     tools:context="com.lianreviews.resturantsystem.MainActivity">
 
-    <LinearLayout
+    <ListView
         android:id="@+id/main_activity_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="558dp"
         android:orientation="vertical">
 
 
-    </LinearLayout>
+    </ListView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/main_page_floating_button"

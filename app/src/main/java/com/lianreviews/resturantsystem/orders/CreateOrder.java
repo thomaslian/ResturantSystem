@@ -16,6 +16,10 @@ import com.lianreviews.resturantsystem.ResourceManager;
 import com.lianreviews.resturantsystem.category.CreateCategory;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class CreateOrder extends AppCompatActivity {
@@ -31,7 +35,7 @@ public class CreateOrder extends AppCompatActivity {
         deleteOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (deleteTempOrder()){
+                if (deleteTempOrder()) {
                     Toast.makeText(CreateOrder.this, "Order is canceled", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(CreateOrder.this, "No order to cancel",
@@ -64,24 +68,28 @@ public class CreateOrder extends AppCompatActivity {
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Get the current order
                 ArrayList<Order> order = ResourceManager.loadTempOrder(CreateOrder.this);
-                if (order != null){
+                if (order != null) {
+                    //Get all the orders from the save file
                     ArrayList<Orders> orders = ResourceManager.loadOrders(CreateOrder.this);
-                    if (orders != null){
-                        orders.add(new Orders (order, orders.size() + 1));
-
-                        int orderNumber = (orders.size() + 1);
-                        Log.d("Order created: ", String.valueOf(orderNumber));
+                    //If there is already a file, add the new order...
+                    if (orders != null) {
+                        //Add the new order to the rest of the orders
+                        orders.add(new Orders(order, orders.size() + 1));
                     } else {
+                        // ... OR create a new arraylist and add the order to that one
                         orders = new ArrayList<>();
-                        orders.add(new Orders (order, 0));
+                        orders.add(new Orders(order, 1));
                     }
 
                     Toast errorToast = Toast.makeText(CreateOrder.this, "There was a problem creating the order",
                             Toast.LENGTH_SHORT);
 
-                    if (saveOrders(orders)){
-                        if(deleteTempOrder()){
+                    //If orders is saved, and the temp order is deleted. Show a Toast
+                    // that the order was created.
+                    if (saveOrders(orders)) {
+                        if (deleteTempOrder()) {
                             Toast.makeText(CreateOrder.this, "Order was created",
                                     Toast.LENGTH_SHORT).show();
                             Intent createOrders = new Intent(v.getContext(), MainActivity.class);
@@ -99,23 +107,38 @@ public class CreateOrder extends AppCompatActivity {
 
     /**
      * Deletes the temp order file
+     *
      * @return true if file is deleted. False if file is not found, or if it was any problems
      * deleting the file.
      */
-    private Boolean deleteTempOrder(){
+    private Boolean deleteTempOrder() {
         Boolean isDeleted = false;
         File file = new File(getFilesDir(), Order.tempOrderFileName);
-        if (file.exists()){
-            if (file.delete()){
+        if (file.exists()) {
+            if (file.delete()) {
                 isDeleted = true;
             }
         }
         return isDeleted;
     }
 
-    private Boolean saveOrders(ArrayList<Orders> orders){
-        Boolean saved = true;
+    private Boolean saveOrders(ArrayList<Orders> orders) {
+        Boolean saved = false;
         File file = new File(getFilesDir(), Order.orderFileName);
+
+        // Save the orders list with the new order
+        try {
+            //Write Orders array to file.
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(orders);
+            saved = true;
+            oos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return saved;
     }
 }
