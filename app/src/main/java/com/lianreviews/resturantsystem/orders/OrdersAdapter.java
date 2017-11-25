@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.lianreviews.resturantsystem.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -59,6 +61,43 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
         TextView orderNumberTextView = listItemView.findViewById(R.id.order_number_orders_page);
         int orderNumber = currentOrder.getOrderNumber();
         orderNumberTextView.setText(String.valueOf(orderNumber));
+
+        // Get the order and create a product name variable to store product names
+        ArrayList<Order> orders = currentOrder.getOrder();
+        String productName = "";
+
+        // Use a loop to add all of the food names to one long sentence
+        for(int i = 0; i < orders.size(); i++) {
+            Order order = orders.get(i);
+            if (i == 0) {
+                productName = order.getProductName();
+            } else if (i <=  1){
+                productName = productName + ", " + order.getProductName();
+            }
+        }
+        TextView showFoodTextView = listItemView.findViewById(R.id.show_food_text_view);
+        showFoodTextView.setText(productName);
+
+        int productPrice = 0;
+
+        // Use a loop to add the price of all the food together
+        for(int i = 0; i < orders.size(); i++) {
+            Order order = orders.get(i);
+                productPrice = productPrice + order.getPriceOfProduct();
+        }
+
+        TextView priceTextView = listItemView.findViewById(R.id.price_orders_page);
+        String productPriceToString = "Total: " + String.valueOf(productPrice);
+        priceTextView.setText(productPriceToString);
+
+
+
+        orderNumberTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
         return listItemView;

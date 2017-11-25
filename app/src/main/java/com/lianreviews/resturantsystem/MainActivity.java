@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                     this, ResourceManager.loadOrders(this));
 
             //Get the ListView and set the adapter for the listView
-            ListView listView = findViewById(R.id.main_activity_linear_layout);
+            ListView listView = findViewById(R.id.main_activity_list_view);
             if(ResourceManager.loadOrders(this) != null) {
                 listView.setAdapter(ordersAdapter);
             }
