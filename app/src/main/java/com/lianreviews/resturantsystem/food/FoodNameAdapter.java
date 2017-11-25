@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,7 +69,9 @@ public class FoodNameAdapter extends ArrayAdapter<FoodName> {
         TextView categoryNameTextView = (TextView) listItemView.findViewById(R.id.food_name);
         categoryNameTextView.setText(currentFoodName.getName());
 
-        categoryNameTextView.setOnClickListener(new View.OnClickListener() {
+        LinearLayout linearLayoutCreateFood =
+                listItemView.findViewById(R.id.linear_layout_create_food);
+        linearLayoutCreateFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mEditMode) {
