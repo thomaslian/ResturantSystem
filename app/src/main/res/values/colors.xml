@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="orderColor">#43A047</color>
-    <color name="cancelColor">#F44336</color>
+    <!-- Going for the Teal color from Material.io-->
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#004D40</color>
+
+    <!--Background color for Grid- and ListView-->
+    <color name="listViewBackground">#B2DFDB</color>
+
+    <!--Text and button color-->
+    <color name="colorText">#009688</color>
+    <color name="colorButton">#00897B</color>
+    <color name="colorButtonText">#FFFFFF</color>
+
+    <!--Color used for animations and floating action buttons-->
+    <color name="colorAccent">#00695C</color>
+
+    <!--Colors used in shopping cart, and for the edit mode-->
+    <color name="orderColor">#00897B</color>
+    <color name="cancelColor">#00695C</color>
 </resources>

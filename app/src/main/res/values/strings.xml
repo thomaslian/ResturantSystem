@@ -11,7 +11,7 @@
     <string name="add_new_category_text">Add category</string>
     <string name="add_category_button">Add category</string>
     <string name="category_name_user_input">Category name</string>
-    <string name="add_food_name">Add food</string>
+    <string name="add_food_name">Add food name</string>
     <string name="add_food_name_hint">Food name</string>
     <string name="drinks_hint_category">Drinks</string>
     <string name="category_text_view_add_food">Category</string>

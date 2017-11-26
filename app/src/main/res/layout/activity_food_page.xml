@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:gravity="center"
+        android:textColor="@color/colorText"
         android:textSize="24sp"
         tool:text="Food Name" />
 
@@ -30,6 +31,7 @@
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:text="Price"
+            android:textColor="@color/colorText"
             android:textSize="14sp" />
 
         <TextView
@@ -39,7 +41,9 @@
             android:layout_weight="3"
             android:gravity="end"
             android:text="0"
+            android:textColor="@color/colorText"
             android:textSize="14sp">
+
         </TextView>
     </LinearLayout>
 
@@ -56,6 +60,7 @@
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:text="Quantity"
+            android:textColor="@color/colorText"
             android:textSize="14sp" />
 
         <LinearLayout
@@ -69,8 +74,10 @@
             <Button
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:background="@color/colorButton"
                 android:onClick="decrement"
                 android:text="-"
+                android:textColor="@color/colorButtonText"
                 android:textSize="14sp" />
 
             <TextView
@@ -80,14 +87,16 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:text="1"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorText"
                 android:textSize="14sp" />
 
             <Button
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:background="@color/colorButton"
                 android:onClick="increment"
                 android:text="+"
+                android:textColor="@color/colorButtonText"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
@@ -98,6 +107,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/order_button_food_page" />
+        android:background="@color/colorButton"
+        android:text="@string/order_button_food_page"
+        android:textColor="@color/colorButtonText" />
 
 </LinearLayout>

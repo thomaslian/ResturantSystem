@@ -59,8 +59,8 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
         final Orders currentOrder = getItem(position);
 
         TextView orderNumberTextView = listItemView.findViewById(R.id.order_number_orders_page);
-        int orderNumber = currentOrder.getOrderNumber();
-        orderNumberTextView.setText(String.valueOf(orderNumber));
+        String orderNumberText = "Order " + String.valueOf(currentOrder.getOrderNumber());
+        orderNumberTextView.setText(String.valueOf(orderNumberText));
 
         // Get the order and create a product name variable to store product names
         ArrayList<Order> orders = currentOrder.getOrder();

@@ -13,21 +13,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Order number"
-            android:textSize="15sp">
-        </TextView>
-
         <ListView
             android:id="@+id/main_activity_list_view"
             android:layout_width="match_parent"
+            android:background="#B2DFDB"
             android:layout_height="match_parent"
             android:orientation="vertical">
         </ListView>

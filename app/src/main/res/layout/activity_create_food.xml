@@ -15,13 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:background="#F44336"
+            android:background="@color/cancelColor"
             android:text="@string/edit_mode_off"/>
 
         <ListView
             android:id="@+id/create_food_activity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"/>
 
     </LinearLayout>
 

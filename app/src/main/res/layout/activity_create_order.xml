@@ -9,7 +9,7 @@
         android:id="@+id/cancel_order_button_in_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F44336"
+        android:background="@color/cancelColor"
         android:textColor="@android:color/white"
         android:text="@string/cancel_order_in_cart"/>
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
-        android:background="#43A047"
+        android:background="@color/orderColor"
         android:text="@string/order_button_in_cart"/>
 
 </LinearLayout>

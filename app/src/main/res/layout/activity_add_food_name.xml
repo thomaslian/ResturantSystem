@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,60 +13,63 @@
         android:layout_height="wrap_content"
         android:text="@string/add_food_name"
         android:textSize="16sp"
-        android:textStyle="normal"/>
+        android:textColor="@color/colorText"
+        android:textStyle="normal" />
 
     <EditText
         android:id="@+id/food_name_user_input"
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/add_food_name_hint"
+        android:textColor="@color/colorText"
         android:inputType="textPersonName"
-        android:textSize="14sp"
-        android:hint="@string/add_food_name_hint"/>
+        android:textSize="14sp" />
 
     <TextView
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/add_a_price_food_name"
+        android:textColor="@color/colorText"
         android:textSize="16sp"
-        android:textStyle="normal"/>
+        android:textStyle="normal" />
 
     <EditText
         android:id="@+id/price_user_input"
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/add_price_hint"
+        android:textColor="@color/colorText"
         android:inputType="number"
-        android:textSize="14sp"
-        android:hint="@string/add_price_hint"/>
+        android:textSize="14sp" />
 
     <TextView
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/category_text_view_add_food"
+        android:textColor="@color/colorText"
         android:textSize="16sp"
-        android:textStyle="normal"/>
+        android:textStyle="normal" />
 
     <TextView
         android:id="@+id/category_name_add_food"
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorText"
         android:hint="@string/drinks_hint_category"
-        android:textSize="14sp"/>
+        android:textSize="14sp" />
 
-    <RelativeLayout
+    <Button
+        android:id="@+id/add_food_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/colorButtonText"
+        android:background="@color/colorButton"
+        android:text="@string/add_food_button" />
 
-        <Button
-            android:id="@+id/add_food_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="@string/add_food_button"/>
-
-    </RelativeLayout>
 </LinearLayout>
