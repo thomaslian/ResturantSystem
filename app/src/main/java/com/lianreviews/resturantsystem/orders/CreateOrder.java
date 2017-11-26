@@ -62,7 +62,7 @@ public class CreateOrder extends AppCompatActivity {
         }
 
         //Get the ListView and set the adapter for the listView
-        ListView listView = (ListView) findViewById(R.id.create_order_activity);
+        ListView listView = findViewById(R.id.create_order_activity);
         listView.setAdapter(orderAdapter);
 
         orderButton.setOnClickListener(new View.OnClickListener() {

@@ -65,39 +65,41 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
         // Get the order and create a product name variable to store product names
         ArrayList<Order> orders = currentOrder.getOrder();
         String productName = "";
+        String amountOrdered = "";
 
         // Use a loop to add all of the food names to one long sentence
         for(int i = 0; i < orders.size(); i++) {
             Order order = orders.get(i);
+            amountOrdered = String.valueOf(order.getNumberOfProducts());
             if (i == 0) {
-                productName = order.getProductName();
-            } else if (i <=  1){
-                productName = productName + ", " + order.getProductName();
+                productName = amountOrdered + " x " + order.getProductName();
+            }
+            if (i > 0){
+                productName = productName + ", " + amountOrdered + " x " + order.getProductName();
             }
         }
         TextView showFoodTextView = listItemView.findViewById(R.id.show_food_text_view);
         showFoodTextView.setText(productName);
 
-        int productPrice = 0;
+        Order order;
+        int productPrice;
+        int numberOfProductsOrdered;
+        int totalPrice = 0;
+        int overallPrice = 0;
 
         // Use a loop to add the price of all the food together
         for(int i = 0; i < orders.size(); i++) {
-            Order order = orders.get(i);
-                productPrice = productPrice + order.getPriceOfProduct();
+            order = orders.get(i);
+            productPrice = order.getPriceOfProduct();
+            numberOfProductsOrdered = order.getNumberOfProducts();
+            totalPrice = productPrice * numberOfProductsOrdered;
+            overallPrice = overallPrice + totalPrice;
         }
 
         TextView priceTextView = listItemView.findViewById(R.id.price_orders_page);
-        String productPriceToString = "Total: " + String.valueOf(productPrice);
+        String productPriceToString = "Total: $" + String.valueOf(overallPrice);
         priceTextView.setText(productPriceToString);
 
-
-
-        orderNumberTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
 
         return listItemView;

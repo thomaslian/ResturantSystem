@@ -29,6 +29,23 @@
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/add_a_price_food_name"
+        android:textSize="16sp"
+        android:textStyle="normal"/>
+
+    <EditText
+        android:id="@+id/price_user_input"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textSize="14sp"
+        android:hint="@string/add_price_hint"/>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/category_text_view_add_food"
         android:textSize="16sp"
         android:textStyle="normal"/>

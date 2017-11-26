@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.lianreviews.resturantsystem.R;
+import com.lianreviews.resturantsystem.ResourceManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,7 +38,7 @@ public class AddCategory extends AppCompatActivity  {
                 if (!editText.getText().toString().equals("") && !editText.getText().toString().equals(" ")) {
                     String userInputCategory = editText.getText().toString();
                     Log.d("Added ", userInputCategory);
-                    saveCategory(userInputCategory);
+                    ResourceManager.saveCategory(AddCategory.this, userInputCategory);
                     Toast.makeText(AddCategory.this, userInputCategory + " added!",
                             Toast.LENGTH_SHORT).show();
                     Intent addCategoryIntent = new Intent(v.getContext(), CreateCategory.class);
@@ -48,46 +49,5 @@ public class AddCategory extends AppCompatActivity  {
                 }
             }
         });
-    }
-
-    private void saveCategory(String categoryName) {
-        //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
-        //Without this we would not get access to the file directory of the app
-        File file = new File(getFilesDir(), "currentCategories.ser");
-
-        ArrayList<FoodCategory> categories = new ArrayList<>();
-
-        // Check if file exist and if it exist load any other saved orders list
-        if (file.exists()) {
-            try {
-                //Read FoodCategory array from file.
-                FileInputStream fis = new FileInputStream(file);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                categories = (ArrayList<FoodCategory>) ois.readObject();
-                ois.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-
-        // Add the new category to the orders list
-        categories.add(new FoodCategory(categoryName));
-
-        // Save the categories list with the new category
-        try {
-            //Write FoodCategory array to file.
-            FileOutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(categories);
-            oos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

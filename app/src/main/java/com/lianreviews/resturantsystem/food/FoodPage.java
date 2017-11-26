@@ -28,6 +28,8 @@ public class FoodPage extends AppCompatActivity {
 
 
     int quantity = 1;
+    int price = 0;
+    ArrayList<FoodName> foodNames;
 
     private String filename = "tempOrder.ser";
 
@@ -41,14 +43,28 @@ public class FoodPage extends AppCompatActivity {
         final String clickedName = intent.getStringExtra(FOOD_NAME);
         final String clickedCategory = intent.getStringExtra(CATEGORY_NAME);
 
-        TextView foodNameTextView = (TextView) findViewById(R.id.food_name_food_page_text_view);
+        TextView foodNameTextView = findViewById(R.id.food_name_food_page_text_view);
         foodNameTextView.setText(clickedName);
 
-        Button orderButton = (Button) findViewById(R.id.order_button_food_page);
+        foodNames = ResourceManager.loadFoodNames(this);
+
+        if (foodNames != null) {
+            for (int i = 0; i < foodNames.size(); i++) {
+                FoodName food = foodNames.get(i);
+                if (food.getName().equals(clickedName)) {
+                    price = food.getPrice();
+                }
+            }
+        }
+
+        TextView priceTextView = findViewById(R.id.price_food_page);
+        priceTextView.setText(String.valueOf(price));
+
+        Button orderButton = findViewById(R.id.order_button_food_page);
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveOrder(clickedName, true, quantity, 10);
+                saveOrder(clickedName, true, quantity, price);
                 Intent createFoodIntent = new Intent(v.getContext(), CreateFood.class);
                 // Show a toast with information of what is ordered
                 Toast.makeText(FoodPage.this, quantity + " of " + clickedName + " ordered.",

@@ -20,4 +20,6 @@
     <string name="order_button_in_cart">Order</string>
     <string name="edit_mode_off">Edit mode: off</string>
     <string name="edit_mode_on">Edit mode: on</string>
+    <string name="add_price_hint">Price</string>
+    <string name="add_a_price_food_name">Add a price</string>
 </resources>

@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.lianreviews.resturantsystem.ResourceManager;
+import com.lianreviews.resturantsystem.category.AddCategory;
+import com.lianreviews.resturantsystem.category.FoodCategory;
 import com.lianreviews.resturantsystem.orders.CreateOrder;
 import com.lianreviews.resturantsystem.R;
 
@@ -38,20 +40,24 @@ public class CreateFood extends AppCompatActivity {
         final String clickedCategory = intent.getStringExtra(CATEGORY_NAME);
 
         // Create a list of all categories
-        List<String> foodCategory = new ArrayList<>();
-        foodCategory.add("Drinks");
+        final List<String> foodCategory = new ArrayList<>();
         foodCategory.add("Drinks");
         foodCategory.add("Dessert");
         foodCategory.add("Food");
 
         // Create a list of all the food
         final List<String> food = new ArrayList<>();
-        food.add("Cola");
         food.add("Fanta");
         food.add("Banana milkshake");
         food.add("Hamburger");
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.food_name_floating_button);
+        //Create a list of the price of the products
+        final List<Integer> price = new ArrayList<>();
+        price.add(2);
+        price.add(4);
+        price.add(6);
+
+        FloatingActionButton floatingActionButton = findViewById(R.id.food_name_floating_button);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,11 +75,11 @@ public class CreateFood extends AppCompatActivity {
         // with the same "i" to the foodNames ArrayList
         for (int i = 0; i < foodCategory.size(); i++) {
             if (foodCategory.get(i).equals(clickedCategory)) {
-                foodNames.add(new FoodName(foodCategory.get(i), food.get(i)));
+                foodNames.add(new FoodName(foodCategory.get(i), food.get(i), price.get(i)));
             }
         }
 
-        setAdapter(foodNames, clickedCategory);
+        setAdapter(foodNames, clickedCategory, food, foodCategory, price);
 
         editModeButton = (Button) findViewById(R.id.edit_mode_button_food);
         editModeButton.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +90,7 @@ public class CreateFood extends AppCompatActivity {
                     editModeButton.setBackgroundColor(ContextCompat.getColor(CreateFood.this,
                             R.color.orderColor));
                     editModeButton.setText(getResources().getString(R.string.edit_mode_on));
-                    setAdapter(foodNames, clickedCategory);
+                    setAdapter(foodNames, clickedCategory, food, foodCategory, price);
                 } else {
                     editMode = false;
                     editModeButton.setBackgroundColor(ContextCompat.getColor(CreateFood.this,
@@ -95,11 +101,22 @@ public class CreateFood extends AppCompatActivity {
         });
     }
 
-    private void setAdapter(ArrayList<FoodName> foodNames, String clickedCategory) {
+    private void setAdapter(ArrayList<FoodName> foodNames, String clickedCategory,
+                            List<String> food, List<String> category,  List<Integer> price) {
         FoodNameAdapter foodNameAdapter = null;
         ArrayList<FoodName> sortedNames = new ArrayList<>();
 
+        //Check if user have used the app before
         if (ResourceManager.loadFoodNames(this) == null) {
+
+            //Add the new Food with category and price to a file, also add the
+            // categories to the category save file
+            for(int i = 0; i < food.size(); i++) {
+                ResourceManager.saveFood(CreateFood.this, new FoodName(category.get(i),
+                        food.get(i), price.get(i)));
+                ResourceManager.saveCategory(CreateFood.this, category.get(i));
+            }
+
             //Create an FoodNameAdapter, whose data source is a list of FoodName.
             //The adapter knows how to create list items for each item in the list.
             foodNameAdapter = new FoodNameAdapter(this, foodNames, editMode);

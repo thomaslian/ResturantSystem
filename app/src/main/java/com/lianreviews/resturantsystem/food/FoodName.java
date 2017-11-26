@@ -10,10 +10,12 @@ public class FoodName implements Serializable {
 
     private String mCategory;
     private String mName;
+    private int mPrice;
 
-    public FoodName(String category, String name) {
+    public FoodName(String category, String name, int price) {
         mCategory = category;
         mName = name;
+        mPrice = price;
     }
 
     public String getName() {
@@ -22,6 +24,10 @@ public class FoodName implements Serializable {
 
     public String getCategory() {
         return mCategory;
+    }
+
+    public int getPrice(){
+        return mPrice;
     }
 
 }
