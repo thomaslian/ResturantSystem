@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.lianreviews.resturantsystem.R;
 import com.lianreviews.resturantsystem.ResourceManager;
+import com.lianreviews.resturantsystem.food.AddFoodName;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +22,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import static com.lianreviews.resturantsystem.category.FoodCategory.CATEGORY_NAME;
+
 public class AddCategory extends AppCompatActivity  {
+
+    private String clickedCategory = "";
+    private EditText editText;
 
 
     @Override
@@ -29,9 +35,36 @@ public class AddCategory extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
 
-        final EditText editText = (EditText) findViewById(R.id.category_name_user_input);
-        Button button = (Button) findViewById(R.id.add_category_button);
+        Intent intent = getIntent();
+        clickedCategory = intent.getStringExtra(CATEGORY_NAME);
 
+        editText = findViewById(R.id.category_name_user_input);
+
+        //Check if there is a clicked name or not. If it is an clicked name, the user
+        // want to edit the name of an Category that exist. If not, the user want to add a new food
+        if (!clickedCategory.equals("")) {
+            editText.setText(clickedCategory);
+        }
+
+        Button removeButton = findViewById(R.id.remove_category_button);
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addCategoryIntent = new Intent(v.getContext(), CreateCategory.class);
+                if(clickedCategory.equals("")){
+                    v.getContext().startActivity(addCategoryIntent);
+                    } else {
+                    if (ResourceManager.removeCategory(AddCategory.this, clickedCategory)) {
+                        Toast.makeText(AddCategory.this, clickedCategory + " deleted!",
+                                Toast.LENGTH_SHORT).show();
+                        v.getContext().startActivity(addCategoryIntent);
+                    }
+                }
+            }
+        });
+
+
+        Button button = findViewById(R.id.add_category_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
