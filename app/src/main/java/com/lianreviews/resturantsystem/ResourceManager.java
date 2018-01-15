@@ -74,6 +74,30 @@ public class ResourceManager {
         return orders;
     }
 
+    public static ArrayList<FoodCategory> loadFoodCategories(Context context){
+        File file = new File(context.getFilesDir(), "currentCategories.ser");
+
+        ArrayList<FoodCategory> categories = new ArrayList<>();
+
+        // Check if file exist and if it exist load any other saved orders list
+        if (file.exists()) {
+            try {
+                //Read FoodCategory array from file.
+                FileInputStream fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                categories = (ArrayList<FoodCategory>) ois.readObject();
+                ois.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return categories;
+    }
+
     public static ArrayList<Orders> loadOrders(Context context) {
         //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
         //Without this we would not get access to the file directory of the app
@@ -109,21 +133,9 @@ public class ResourceManager {
 
         ArrayList<FoodCategory> categories = new ArrayList<>();
 
-        // Check if file exist and if it exist load any other saved orders list
+        // Check if file exist and if it exist load any other saved categories
         if (file.exists()) {
-            try {
-                //Read FoodCategory array from file.
-                FileInputStream fis = new FileInputStream(file);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                categories = (ArrayList<FoodCategory>) ois.readObject();
-                ois.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            categories = ResourceManager.loadFoodCategories(context);
         }
 
         // Add the new category to the orders list
@@ -221,21 +233,9 @@ public class ResourceManager {
 
         ArrayList<FoodCategory> categories = new ArrayList<>();
 
-        // Check if file exist and if it exist load any other saved orders list
+        // Check if file exist and if it exist load any saved categories
         if (file.exists()) {
-            try {
-                //Read FoodCategory array from file.
-                FileInputStream fis = new FileInputStream(file);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                categories = (ArrayList<FoodCategory>) ois.readObject();
-                ois.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            categories = ResourceManager.loadFoodCategories(context);
         }
 
         if (categories != null) {
