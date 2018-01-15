@@ -72,6 +72,9 @@ public class FoodCategoryAdapter extends ArrayAdapter<FoodCategory> {
             @Override
             public void onClick(View v) {
                 if (mEditMode) {
+                    Intent addCategoryIntent = new Intent(v.getContext(), AddCategory.class);
+                    addCategoryIntent.putExtra(CATEGORY_NAME, currentFoodCategory.getCategoryName());
+                    v.getContext().startActivity(addCategoryIntent);
                     Toast.makeText(getContext(), "Edit mode is enabled",
                             Toast.LENGTH_SHORT).show();
                 } else {
