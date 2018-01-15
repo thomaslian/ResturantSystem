@@ -66,6 +66,24 @@ public class AddFoodName extends AppCompatActivity {
             foodNames = ResourceManager.loadFoodNames(this);
         }
 
+        //Create a button that removes the FoodName or exits the editor if nothing is saved
+        Button removeButton = findViewById(R.id.remove_food_button);
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent removeFoodIntent = new Intent(v.getContext(), CreateCategory.class);
+                if(clickedName.equals("")){
+                    v.getContext().startActivity(removeFoodIntent);
+                } else {
+                    if(ResourceManager.removeFood(AddFoodName.this,
+                            new FoodName(clickedCategory, clickedName, productPrice))){
+                            Toast.makeText(AddFoodName.this, clickedName + " deleted!",
+                                    Toast.LENGTH_SHORT).show();
+                            v.getContext().startActivity(removeFoodIntent);
+                    }
+                }
+            }
+        });
 
         //Create a button that saves the new or edited FoodName
         Button button = findViewById(R.id.add_food_button);

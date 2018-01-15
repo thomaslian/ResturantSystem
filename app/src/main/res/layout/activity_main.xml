@@ -16,7 +16,6 @@
         <ListView
             android:id="@+id/main_activity_list_view"
             android:layout_width="match_parent"
-            android:background="#B2DFDB"
             android:layout_height="match_parent"
             android:orientation="vertical">
         </ListView>

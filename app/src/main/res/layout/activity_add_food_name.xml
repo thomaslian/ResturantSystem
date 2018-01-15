@@ -8,6 +8,15 @@
     android:orientation="vertical"
     tools:context="com.lianreviews.resturantsystem.category.AddCategory">
 
+    <Button
+        android:id="@+id/remove_food_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/colorButtonText"
+        android:background="@color/colorButton"
+        android:text="@string/remove_food_button" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

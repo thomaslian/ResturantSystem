@@ -161,7 +161,7 @@ public class ResourceManager {
             }
         }
 
-        // Add the new category to the orders list
+        // Add the new foodname to the orders list
         foodNames.add(foodName);
 
         // Save the categories list with the new category
@@ -176,5 +176,40 @@ public class ResourceManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean removeFood(Context context, FoodName foodName) {
+        //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
+        //Without this we would not get access to the file directory of the app
+        File file = new File(context.getFilesDir(), "currentFoodNames.ser");
+        ArrayList<FoodName> foodNames = new ArrayList<>();
+
+        if (file.exists()) {
+            foodNames = ResourceManager.loadFoodNames(context);
+        }
+
+        if (foodNames != null) {
+            for (int i = 0; i < foodNames.size(); i++){
+                FoodName loadedFoodName = foodNames.get(i);
+                if (loadedFoodName.getName().equals(foodName.getName()) &&
+                        loadedFoodName.getCategory().equals(foodName.getCategory())){
+                    foodNames.remove(i);
+                }
+            }
+        }
+
+        // Save the categories list with the new category
+        try {
+            //Write FoodCategory array to file.
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(foodNames);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }
