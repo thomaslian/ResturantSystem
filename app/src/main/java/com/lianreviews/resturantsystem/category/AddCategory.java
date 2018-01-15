@@ -42,8 +42,10 @@ public class AddCategory extends AppCompatActivity  {
 
         //Check if there is a clicked name or not. If it is an clicked name, the user
         // want to edit the name of an Category that exist. If not, the user want to add a new food
-        if (!clickedCategory.equals("")) {
-            editText.setText(clickedCategory);
+        if(clickedCategory != null) {
+            if (!clickedCategory.equals("")) {
+                editText.setText(clickedCategory);
+            }
         }
 
         Button removeButton = findViewById(R.id.remove_category_button);
