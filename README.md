@@ -1,6 +1,6 @@
 # ResturantSystem
 
-Copyright (c) 2017 Thomas Lian Ødegaard
+Copyright (c) 2017-2018 Thomas Lian Ødegaard
 
 All Rights Reserved
  
