@@ -53,6 +53,15 @@ public class AddFoodName extends AppCompatActivity {
         // want to edit the name of an Food that exist. If not, the user want to add a new food
         if (!clickedName.equals("")) {
             editText.setText(clickedName);
+            //Find the price of the product and set it to the priceEdiText
+            ArrayList<FoodName> foodNames = ResourceManager.loadFoodNames(AddFoodName.this);
+            for (int i = 0; i < foodNames.size(); i++){
+                FoodName foodName = foodNames.get(i);
+                if (foodName.getCategory().equals(clickedCategory) &&
+                        foodName.getName().equals(clickedName)){
+                    priceEditText.setText(String.valueOf(foodName.getPrice()));
+                }
+            }
         }
 
         //Show the category the Food is displayed in
@@ -101,6 +110,11 @@ public class AddFoodName extends AppCompatActivity {
                             new FoodName(clickedCategory,  editText.getText().toString(), productPrice));
                     Toast.makeText(AddFoodName.this, userInputFoodName + " added!",
                             Toast.LENGTH_SHORT).show();
+                    if (clickedName != null){
+                        ResourceManager.removeFood(AddFoodName.this,
+                                new FoodName(clickedCategory, clickedName, 0));
+                    }
+
                     Intent addFoodIntent = new Intent(v.getContext(), CreateCategory.class);
                     v.getContext().startActivity(addFoodIntent);
                 } else {
