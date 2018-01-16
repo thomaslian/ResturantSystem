@@ -58,6 +58,13 @@ public class AddCategory extends AppCompatActivity  {
                     v.getContext().startActivity(addCategoryIntent);
                     } else {
                     if (ResourceManager.removeCategory(AddCategory.this, clickedCategory)) {
+                        ArrayList<FoodName> foodNames = ResourceManager.loadFoodNames(AddCategory.this);
+                        for (int i = 0; i < foodNames.size(); i++){
+                            FoodName foodName = foodNames.get(i);
+                            if(foodName.getCategory().equals(clickedCategory)){
+                                ResourceManager.removeFood(AddCategory.this, foodName);
+                            }
+                        }
                         Toast.makeText(AddCategory.this, clickedCategory + " deleted!",
                                 Toast.LENGTH_SHORT).show();
                         v.getContext().startActivity(addCategoryIntent);
