@@ -1,37 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.lianreviews.resturantsystem.MainActivity">
 
-    <LinearLayout
-        android:id="@+id/main_activity_linear_layout"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/main_activity_list_view"
+        <LinearLayout
+            android:id="@+id/main_activity_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-        </ListView>
-    </LinearLayout>
+
+            <ListView
+                android:id="@+id/main_activity_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            </ListView>
+        </LinearLayout>
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/main_page_floating_button"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/main_page_floating_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_add_white_48dp"
+            app:fabSize="normal"
+            app:layout_anchor="@id/main_activity_linear_layout"
+            app:layout_anchorGravity="bottom|right|end" />
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:src="@drawable/ic_add_white_48dp"
-        app:fabSize="normal"
-        app:layout_anchor="@id/main_activity_linear_layout"
-        app:layout_anchorGravity="bottom|right|end" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu">
 
-</android.support.design.widget.CoordinatorLayout>
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

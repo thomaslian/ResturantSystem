@@ -3,8 +3,11 @@ package com.lianreviews.resturantsystem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +18,9 @@ import com.lianreviews.resturantsystem.orders.OrderAdapter;
 import com.lianreviews.resturantsystem.orders.OrdersAdapter;
 
 public class MainActivity extends AppCompatActivity {
+
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        drawerLayout = findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         //Create a FloatingActionButton variable and assign it to our floating action button
         FloatingActionButton floatingActionButton = findViewById(R.id.main_page_floating_button);
@@ -50,5 +64,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(createOrderIntent);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }
