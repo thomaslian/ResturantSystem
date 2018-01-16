@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.lianreviews.resturantsystem.R;
 import com.lianreviews.resturantsystem.ResourceManager;
 import com.lianreviews.resturantsystem.food.AddFoodName;
+import com.lianreviews.resturantsystem.food.FoodName;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -76,6 +77,20 @@ public class AddCategory extends AppCompatActivity  {
                     ResourceManager.saveCategory(AddCategory.this, userInputCategory);
                     Toast.makeText(AddCategory.this, userInputCategory + " added!",
                             Toast.LENGTH_SHORT).show();
+                    //Remove the old category
+                    ResourceManager.removeCategory(AddCategory.this, clickedCategory);
+                    //Add the new category name to all the underlying food
+                    ArrayList<FoodName> foodNames = ResourceManager.loadFoodNames(AddCategory.this);
+                    if (foodNames != null){
+                        for (int i = 0; i < foodNames.size(); i++) {
+                            FoodName foodName = foodNames.get(i);
+                            if (foodName.getCategory().equals(clickedCategory)){
+                                foodName.setCategory(userInputCategory);
+                                ResourceManager.saveFood(AddCategory.this, foodName);
+                            }
+                        }
+                    }
+
                     Intent addCategoryIntent = new Intent(v.getContext(), CreateCategory.class);
                     v.getContext().startActivity(addCategoryIntent);
                 } else {

@@ -30,4 +30,8 @@ public class FoodName implements Serializable {
         return mPrice;
     }
 
+    public void setCategory(String newCategory){
+        mCategory = newCategory;
+    }
+
 }
