@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class Orders implements Serializable {
 
+    public static final String ORDER_NUMBER = "ordernumber";
+
     private ArrayList<Order> mOrder;
     private int mOrderNumber;
 

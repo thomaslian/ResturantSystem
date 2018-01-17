@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.lianreviews.resturantsystem">
+    package="com.lianreviews.resturantsystem">
 
     <application
         android:allowBackup="true"
@@ -11,34 +11,30 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".category.CreateCategory"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".food.CreateFood"
-            android:parentActivityName=".category.CreateCategory">
-        </activity>
+            android:parentActivityName=".category.CreateCategory"></activity>
         <activity
             android:name=".orders.CreateOrder"
-            android:parentActivityName=".category.CreateCategory">
-        </activity>
+            android:parentActivityName=".category.CreateCategory"></activity>
         <activity
             android:name=".food.FoodPage"
-            android:parentActivityName=".category.CreateCategory">
-        </activity>
+            android:parentActivityName=".category.CreateCategory"></activity>
         <activity
             android:name=".category.AddCategory"
-            android:parentActivityName=".category.CreateCategory">
-        </activity>
+            android:parentActivityName=".category.CreateCategory"></activity>
         <activity
             android:name=".food.AddFoodName"
-            android:parentActivityName=".category.CreateCategory">
-        </activity>
+            android:parentActivityName=".category.CreateCategory"></activity>
+        <activity android:name=".orders.ViewOrder"></activity>
     </application>
 
 </manifest>

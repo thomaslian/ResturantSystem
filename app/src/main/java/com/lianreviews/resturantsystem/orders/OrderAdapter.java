@@ -52,14 +52,14 @@ public class OrderAdapter extends ArrayAdapter<Order> {
         // Get the FoodName object located at this position in the list
         final Order currentOrder = getItem(position);
 
-        TextView numbersOrderedTextView = (TextView) listItemView.findViewById(R.id.quantity_ordered);
+        TextView numbersOrderedTextView = listItemView.findViewById(R.id.quantity_ordered);
         int numbersOrdered = currentOrder.getNumberOfProducts();
         numbersOrderedTextView.setText(String.valueOf(numbersOrdered));
 
-        TextView foodNameTextView = (TextView) listItemView.findViewById(R.id.food_name);
+        TextView foodNameTextView = listItemView.findViewById(R.id.food_name);
         foodNameTextView.setText(currentOrder.getProductName());
 
-        TextView foodPriceTextView = (TextView) listItemView.findViewById(R.id.food_price);
+        TextView foodPriceTextView = listItemView.findViewById(R.id.food_price);
         if (numbersOrdered == 1) {
             String text = "$" + String.valueOf(currentOrder.getPriceOfProduct());
             foodPriceTextView.setText(text);

@@ -1,18 +1,26 @@
 package com.lianreviews.resturantsystem.orders;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lianreviews.resturantsystem.R;
+import com.lianreviews.resturantsystem.food.AddFoodName;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+
+import static com.lianreviews.resturantsystem.category.FoodCategory.CATEGORY_NAME;
+import static com.lianreviews.resturantsystem.food.FoodName.FOOD_NAME;
+import static com.lianreviews.resturantsystem.orders.Orders.ORDER_NUMBER;
 
 /**
  * Created by Thoma on 24-Nov-17.
@@ -99,6 +107,16 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
         TextView priceTextView = listItemView.findViewById(R.id.price_orders_page);
         String productPriceToString = "Total: $" + String.valueOf(overallPrice);
         priceTextView.setText(productPriceToString);
+
+        LinearLayout viewOrderButton = listItemView.findViewById(R.id.view_order_button);
+        viewOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewOrderIntent = new Intent(view.getContext(), ViewOrder.class);
+                viewOrderIntent.putExtra(ORDER_NUMBER, currentOrder.getOrderNumber());
+                view.getContext().startActivity(viewOrderIntent);
+            }
+        });
 
 
 
