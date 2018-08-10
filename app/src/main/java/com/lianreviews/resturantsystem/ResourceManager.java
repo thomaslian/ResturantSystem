@@ -20,6 +20,12 @@ import java.util.ArrayList;
 
 public class ResourceManager {
 
+    /*
+    ###################################################
+    LOAD FILES
+    ###################################################
+     */
+
     public static ArrayList<FoodName> loadFoodNames(Context context) {
         File file = new File(context.getFilesDir(), FoodName.FOOD_NAME_SAVE);
 
@@ -126,6 +132,12 @@ public class ResourceManager {
         return orders;
     }
 
+    /*
+    ###################################################
+    SAVE FILES
+    ###################################################
+     */
+
     public static void saveCategory(Context context, String categoryName) {
         //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
         //Without this we would not get access to the file directory of the app
@@ -191,6 +203,39 @@ public class ResourceManager {
         }
     }
 
+    public static Boolean saveOrders(Context context, ArrayList<Orders> orders) {
+        //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
+        //Without this we would not get access to the file directory of the app
+        File file = new File(context.getFilesDir(), "orders.ser");
+
+
+        // Save the orders list with the new order
+        try {
+            //Write Orders array to file.
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(orders);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    /*
+    ###################################################
+    EDIT FILES
+    ###################################################
+     */
+
+    /*
+    This function will remove a foodName from an ArrayList that is
+    saved as a file. The code finds the file, loads the ArrayList from the function
+    loadFoodnames and removes the specific foodName from the ArrayList. Then it saves the
+    ArrayList as the same file (file is overwritten).
+     */
     public static boolean removeFood(Context context, FoodName foodName) {
         //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
         //Without this we would not get access to the file directory of the app
@@ -261,4 +306,5 @@ public class ResourceManager {
         }
         return true;
     }
+
 }

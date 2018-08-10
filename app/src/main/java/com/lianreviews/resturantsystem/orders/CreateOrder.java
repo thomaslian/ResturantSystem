@@ -29,7 +29,7 @@ public class CreateOrder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_order);
 
-        Button deleteOrderButton = (Button) findViewById(R.id.cancel_order_button_in_cart);
+        Button deleteOrderButton = findViewById(R.id.cancel_order_button_in_cart);
         Button orderButton = findViewById(R.id.order_button_in_cart);
 
         deleteOrderButton.setOnClickListener(new View.OnClickListener() {
@@ -78,18 +78,18 @@ public class CreateOrder extends AppCompatActivity {
                         //Add the new order to the rest of the orders
                         orders.add(new Orders(order, orders.size() + 1));
                     } else {
-                        // ... OR if ther is no savefile, create a new arraylist and add the
+                        // ... OR if there is no savefile, create a new arraylist and add the
                         // order to that one
                         orders = new ArrayList<>();
                         orders.add(new Orders(order, 1));
                     }
 
-                    Toast errorToast = Toast.makeText(CreateOrder.this, "There was a problem creating the order",
-                            Toast.LENGTH_SHORT);
+                    Toast errorToast = Toast.makeText(CreateOrder.this,
+                            "There was a problem creating the order", Toast.LENGTH_SHORT);
 
                     //If orders is saved, and the temp order is deleted. Show a Toast
                     // that the order was created.
-                    if (saveOrders(orders)) {
+                    if (ResourceManager.saveOrders(CreateOrder.this, orders)) {
                         if (deleteTempOrder()) {
                             Toast.makeText(CreateOrder.this, "Order was created",
                                     Toast.LENGTH_SHORT).show();
@@ -121,25 +121,5 @@ public class CreateOrder extends AppCompatActivity {
             }
         }
         return isDeleted;
-    }
-
-    private Boolean saveOrders(ArrayList<Orders> orders) {
-        Boolean saved = false;
-        File file = new File(getFilesDir(), Order.orderFileName);
-
-        // Save the orders list with the new order
-        try {
-            //Write Orders array to file.
-            FileOutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(orders);
-            saved = true;
-            oos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return saved;
     }
 }

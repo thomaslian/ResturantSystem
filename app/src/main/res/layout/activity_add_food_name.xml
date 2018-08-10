@@ -10,11 +10,10 @@
 
     <Button
         android:id="@+id/remove_food_button"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/colorButtonText"
-        android:background="@color/colorButton"
         android:text="@string/remove_food_button" />
 
     <TextView
@@ -74,11 +73,10 @@
 
     <Button
         android:id="@+id/add_food_button"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="@color/colorButtonText"
-        android:background="@color/colorButton"
         android:text="@string/add_food_button" />
 
 </LinearLayout>
