@@ -18,23 +18,24 @@
         </activity>
         <activity
             android:name=".category.CreateCategory"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".food.CreateFood"
-            android:parentActivityName=".category.CreateCategory"></activity>
+            android:parentActivityName=".category.CreateCategory" />
         <activity
             android:name=".orders.CreateOrder"
-            android:parentActivityName=".category.CreateCategory"></activity>
+            android:parentActivityName=".category.CreateCategory" />
         <activity
             android:name=".food.FoodPage"
-            android:parentActivityName=".category.CreateCategory"></activity>
+            android:parentActivityName=".category.CreateCategory" />
         <activity
             android:name=".category.AddCategory"
-            android:parentActivityName=".category.CreateCategory"></activity>
+            android:parentActivityName=".category.CreateCategory" />
         <activity
             android:name=".food.AddFoodName"
-            android:parentActivityName=".category.CreateCategory"></activity>
-        <activity android:name=".orders.ViewOrder"></activity>
+            android:parentActivityName=".category.CreateCategory" />
+        <activity android:name=".orders.ViewOrder" />
+        <activity android:name=".Archive"></activity>
     </application>
 
 </manifest>

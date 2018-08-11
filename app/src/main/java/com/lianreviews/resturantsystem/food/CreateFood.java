@@ -81,7 +81,7 @@ public class CreateFood extends AppCompatActivity {
 
         setAdapter(foodNames, clickedCategory, food, foodCategory, price);
 
-        editModeButton = (Button) findViewById(R.id.edit_mode_button_food);
+        editModeButton = findViewById(R.id.edit_mode_button_food);
         editModeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

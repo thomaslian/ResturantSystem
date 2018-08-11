@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- View the orders. This is the main page. -->
     <item android:id="@+id/orders_nav_menu"
         android:title="Orders"/>
 
+    <!-- View the archived orders. -->
     <item android:id="@+id/archive_nav_menu"
         android:title="Archive"/>
 

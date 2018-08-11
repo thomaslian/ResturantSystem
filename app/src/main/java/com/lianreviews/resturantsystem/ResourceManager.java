@@ -132,6 +132,34 @@ public class ResourceManager {
         return orders;
     }
 
+    public static ArrayList<Orders> loadArchivedOrders(Context context) {
+        //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
+        //Without this we would not get access to the file directory of the app
+        File file = new File(context.getFilesDir(), "archivedOrders.ser");
+
+        ArrayList<Orders> orders = new ArrayList<>();
+
+        // Check if file exist and if it exist load any other saved orders list
+        if (file.exists()) {
+            try {
+                //Read Order array from file.
+                FileInputStream fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                orders = (ArrayList<Orders>) ois.readObject();
+                ois.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            orders = null;
+        }
+        return orders;
+    }
+
     /*
     ###################################################
     SAVE FILES
@@ -207,6 +235,27 @@ public class ResourceManager {
         //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
         //Without this we would not get access to the file directory of the app
         File file = new File(context.getFilesDir(), "orders.ser");
+
+
+        // Save the orders list with the new order
+        try {
+            //Write Orders array to file.
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(orders);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public static Boolean archiveOrders(Context context, ArrayList<Orders> orders) {
+        //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
+        //Without this we would not get access to the file directory of the app
+        File file = new File(context.getFilesDir(), "archivedOrders.ser");
 
 
         // Save the orders list with the new order
