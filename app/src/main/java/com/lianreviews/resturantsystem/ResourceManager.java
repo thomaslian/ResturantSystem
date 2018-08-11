@@ -356,4 +356,37 @@ public class ResourceManager {
         return true;
     }
 
+    public static boolean removeOrder(Context context, int orderNumber) {
+        //Create a new file because the FileOutputSteam/FileInputStream takes it as an input
+        //Without this we would not get access to the file directory of the app
+        File file = new File(context.getFilesDir(), "orders.ser");
+        ArrayList<Orders> orders = new ArrayList<>();
+
+        if (file.exists()) {
+            orders = ResourceManager.loadOrders(context);
+        }
+
+        if (orders != null) {
+            for (int i = 0; i < orders.size(); i++){
+                Orders loadedOrders = orders.get(i);
+                if (loadedOrders.getOrderNumber() == orderNumber){
+                    orders.remove(i);
+                }
+            }
+        }
+
+        // Save the new ArrayList with orders
+        try {
+            //Write Orders array to file.
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(orders);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 }
