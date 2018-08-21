@@ -38,7 +38,7 @@ public class CreateCategory extends AppCompatActivity {
         foodCategories.add(new FoodCategory("Food"));
         foodCategories.add(new FoodCategory("Dessert"));
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton)
+        FloatingActionButton floatingActionButton =
                 findViewById(R.id.category_floating_button);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +85,7 @@ public class CreateCategory extends AppCompatActivity {
         }
 
         //Get the GridView and set the foodCategoryAdapter for the gridView
-        GridView gridView = (GridView) findViewById(R.id.create_order_activity);
+        GridView gridView = findViewById(R.id.create_order_activity);
         gridView.setAdapter(foodCategoryAdapter);
     }
 

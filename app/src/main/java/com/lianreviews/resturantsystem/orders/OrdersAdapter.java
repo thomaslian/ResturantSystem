@@ -76,14 +76,16 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
         String amountOrdered = "";
 
         // Use a loop to add all of the food names to one long sentence
-        for(int i = 0; i < orders.size(); i++) {
-            Order order = orders.get(i);
-            amountOrdered = String.valueOf(order.getNumberOfProducts());
-            if (i == 0) {
-                productName = amountOrdered + " x " + order.getProductName();
-            }
-            if (i > 0){
-                productName = productName + ", " + amountOrdered + " x " + order.getProductName();
+        if (orders != null) {
+            for (int i = 0; i < orders.size(); i++) {
+                Order order = orders.get(i);
+                amountOrdered = String.valueOf(order.getNumberOfProducts());
+                if (i == 0) {
+                    productName = amountOrdered + " x " + order.getProductName();
+                }
+                if (i > 0) {
+                    productName = productName + ", " + amountOrdered + " x " + order.getProductName();
+                }
             }
         }
         TextView showFoodTextView = listItemView.findViewById(R.id.show_food_text_view);
@@ -96,12 +98,14 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
         int overallPrice = 0;
 
         // Use a loop to add the price of all the food together
-        for(int i = 0; i < orders.size(); i++) {
-            order = orders.get(i);
-            productPrice = order.getPriceOfProduct();
-            numberOfProductsOrdered = order.getNumberOfProducts();
-            totalPrice = productPrice * numberOfProductsOrdered;
-            overallPrice = overallPrice + totalPrice;
+        if (orders != null) {
+            for (int i = 0; i < orders.size(); i++) {
+                order = orders.get(i);
+                productPrice = order.getPriceOfProduct();
+                numberOfProductsOrdered = order.getNumberOfProducts();
+                totalPrice = productPrice * numberOfProductsOrdered;
+                overallPrice = overallPrice + totalPrice;
+            }
         }
 
         TextView priceTextView = listItemView.findViewById(R.id.price_orders_page);
