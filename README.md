@@ -1,4 +1,5 @@
 # ResturantSystem
+A easy to use resturant system. For Android.
 
 Copyright (c) 2017-2018 Thomas Lian Ødegaard
 
